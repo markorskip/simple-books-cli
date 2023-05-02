@@ -1,11 +1,10 @@
-package io.efficientsoftware.simplebookscli.transaction;
+package io.efficientsoftware.simplebookscli.service;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
-import io.efficientsoftware.simplebookscli.transaction.model.SimpleTransaction;
+import io.efficientsoftware.simplebookscli.model.TransactionLogEntry;
 
 public class ReportService {
 	

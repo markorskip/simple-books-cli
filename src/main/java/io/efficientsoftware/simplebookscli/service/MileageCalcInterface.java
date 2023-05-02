@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli;
+package io.efficientsoftware.simplebookscli.service;
 
 public interface MileageCalcInterface {
 	

@@ -1,8 +1,8 @@
-package io.efficientsoftware.simplebookscli.transaction.model;
+package io.efficientsoftware.simplebookscli.model;
 
 import java.util.Date;
 
-public class SimpleTransaction {
+public class TransactionLogEntry {
 	
 	public Date date;
 	public double amount;
@@ -10,5 +10,5 @@ public class SimpleTransaction {
 	public String description;
 	public String account;
 	public String category;
-
+	
 }
