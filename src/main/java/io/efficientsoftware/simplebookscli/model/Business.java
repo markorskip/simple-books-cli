@@ -8,25 +8,21 @@ import lombok.Data;
 
 // Serialize and deserialize for storage
 @Data
-public class Business implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public class Business implements Serializable {
+
+	private final long serialVersionUID = 1;
 	private String businessName;
 	private String ownerName;
 	
-	private Set<WorkContracts> contracts = new HashSet<>(); // Work for hourly pay
+	private Set<HourlyContract> hourlyContracts = new HashSet<>(); // Work for hourly pay
 	private Set<Product> products = new HashSet<>(); // Products the business owns and can sell directly
 	
 	private Set<TransactionLogEntry> directExpenses = new HashSet<>();
 	private Set<TransactionLogEntry> directRevenue = new HashSet<>();
 	private Set<Vehicle> vehiclesUsedForBusiness;
+
 	private HomeOffice homeOffice;
-	
 	private CategorizationRules categorizationRules;
-	
-	public void addDirectExpense(TransactionLogEntry entry) {
-		this.directExpenses.add(entry);
-	}
 
 	public String display(String arg) {
 		arg = arg.toLowerCase();
@@ -37,7 +33,7 @@ public class Business implements Serializable{
 			return this.ownerName;
 		}
 		if (arg.contains("contract")) {
-			return this.contracts.toString();
+			return this.hourlyContracts.toString();
 		}
 		if (arg.contains("product")) {
 			return this.products.toString();

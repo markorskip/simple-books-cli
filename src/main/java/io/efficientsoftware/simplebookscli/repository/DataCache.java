@@ -1,5 +1,6 @@
-package io.efficientsoftware.simplebookscli.service;
+package io.efficientsoftware.simplebookscli.repository;
 
+import io.efficientsoftware.simplebookscli.model.HourlyContract;
 import org.springframework.stereotype.Service;
 
 import io.efficientsoftware.simplebookscli.model.Business;
@@ -10,6 +11,6 @@ import lombok.Data;
 public class DataCache {
 	
 	private Business business;
-	private String ownerName;
+
 
 }

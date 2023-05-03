@@ -1,9 +1,12 @@
 package io.efficientsoftware.simplebookscli.model;
 
+import lombok.Data;
+
 import java.util.Set;
 
+@Data
 public class Vehicle {
-	
+
 	public String label;
 	public String description;
 	public int startingYearMiles2023;

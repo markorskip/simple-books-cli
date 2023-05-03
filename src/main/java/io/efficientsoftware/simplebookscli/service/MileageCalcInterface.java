@@ -5,8 +5,7 @@ public interface MileageCalcInterface {
 	default double amountDeductibleWithStandardMilageRate(int businessMilesForGivenYear, double mileageRate) {
 		return businessMilesForGivenYear * mileageRate;
 	}
-	
-	
+
 	default double percentageBusinessUse(int startingYearMiles, int endingYearMiles, int businessMilesForGivenYear) {
 		int totalMiles =  endingYearMiles - startingYearMiles;
 		return businessMilesForGivenYear / totalMiles;

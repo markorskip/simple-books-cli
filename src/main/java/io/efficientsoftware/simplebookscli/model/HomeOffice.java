@@ -1,7 +1,10 @@
 package io.efficientsoftware.simplebookscli.model;
 
+import lombok.Data;
+
 import java.util.Set;
 
+@Data
 public class HomeOffice {
 	
 	public String label;
