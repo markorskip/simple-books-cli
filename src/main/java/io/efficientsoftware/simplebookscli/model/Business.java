@@ -6,23 +6,20 @@ import java.util.HashSet;
 
 import lombok.Data;
 
-// Serialize and deserialize for storage
 @Data
-public class Business implements Serializable {
+public class Business {
 
-	private final long serialVersionUID = 1;
-	private String businessName;
-	private String ownerName;
-	
+	private BusinessInformation businessInformation = new BusinessInformation();
+
 	private Set<HourlyContract> hourlyContracts = new HashSet<>(); // Work for hourly pay
 	private Set<Product> products = new HashSet<>(); // Products the business owns and can sell directly
-	
+
 	private Set<TransactionLogEntry> directExpenses = new HashSet<>();
 	private Set<TransactionLogEntry> directRevenue = new HashSet<>();
-	private Set<Vehicle> vehiclesUsedForBusiness;
+	private Set<Vehicle> vehiclesUsedForBusiness = new HashSet<>();
+	private HomeOffice homeOffice = new HomeOffice();
+	private CategorizationRules categorizationRules = new CategorizationRules();
 
-	private HomeOffice homeOffice;
-	private CategorizationRules categorizationRules;
 
 	public String display(String arg) {
 		arg = arg.toLowerCase();
@@ -30,7 +27,7 @@ public class Business implements Serializable {
 			return this.toString();
 		}
 		if (arg.contains("owner")) {
-			return this.ownerName;
+			return this.businessInformation.getOwnerName();
 		}
 		if (arg.contains("contract")) {
 			return this.hourlyContracts.toString();
@@ -55,7 +52,7 @@ public class Business implements Serializable {
 		}
 		
 		// Default value
-		return this.businessName;
+		return this.getBusinessInformation().getBusinessName();
 	}
 	
 }

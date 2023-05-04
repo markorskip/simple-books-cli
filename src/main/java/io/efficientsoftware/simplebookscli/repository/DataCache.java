@@ -9,8 +9,7 @@ import lombok.Data;
 @Service
 @Data
 public class DataCache {
-	
-	private Business business;
 
+	private Business business;
 
 }

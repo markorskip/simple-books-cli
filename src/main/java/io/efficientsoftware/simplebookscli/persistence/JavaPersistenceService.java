@@ -1,9 +1,8 @@
-package io.efficientsoftware.simplebookscli.service;
+package io.efficientsoftware.simplebookscli.persistence;
 
 import io.efficientsoftware.simplebookscli.model.Business;
 import io.efficientsoftware.simplebookscli.repository.DataCache;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.shell.standard.ShellOption;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -12,7 +11,7 @@ import java.io.*;
  * The service handles loading a business and saving a business to a file.
  */
 @Component
-public class PersistenceService {
+public class JavaPersistenceService implements PersistenceInterface {
 
     @Autowired
     private DataCache dataCache;
@@ -29,7 +28,7 @@ public class PersistenceService {
     }
 
     public void load(String arg
-    ) throws IOException, ClassNotFoundException {
+    ) throws Exception {
         FileInputStream fileInputStream
                 = new FileInputStream(arg);
         ObjectInputStream objectInputStream

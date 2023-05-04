@@ -6,6 +6,8 @@ import org.springframework.shell.component.flow.ComponentFlow;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 public class HourlyContract implements Serializable {
@@ -15,7 +17,7 @@ public class HourlyContract implements Serializable {
 	private double hourlyRate;
 	private Date startOfContract;
 	private Date endOfContract;
-	private TimeKeepingLog timeKeepingLog;
+	public Set<TimekeepingLogEntry> timeKeepingLog = new HashSet<>();
 
 	public static HourlyContract buildFromResult(ComponentFlow.ComponentFlowResult result) {
 		ComponentContext<?> ctx = result.getContext();

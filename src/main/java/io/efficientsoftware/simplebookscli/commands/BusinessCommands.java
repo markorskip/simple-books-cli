@@ -1,5 +1,6 @@
 package io.efficientsoftware.simplebookscli.commands;
 
+import io.efficientsoftware.simplebookscli.repository.DataCacheRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.shell.standard.ShellComponent;
@@ -11,26 +12,29 @@ import io.efficientsoftware.simplebookscli.repository.DataCache;
 
 @ShellComponent
 public class BusinessCommands {
-	
+
 	@Autowired
-	private DataCache dataCache;
+	private DataCacheRepository repository;
 	
-	@ShellMethod(key = "create", value = "Create a new business - pass in the name")
-	public String createBusiness(
+	@ShellMethod(value = "Create a new business - pass in the name")
+	public void createNewBusiness(
 		@ShellOption(defaultValue = "demo") String arg
 	) {
-		Business business = new Business();
-		business.setBusinessName(arg);
-		this.dataCache.setBusiness(business);
-		return business.toString();
+		if (this.repository.getBusiness() == null) {
+			Business business = new Business();
+			business.getBusinessInformation().setBusinessName(arg);
+			this.repository.setBusiness(business);
+		} else {
+			System.out.println("Business already created");
+		}
 	}
 	
-	@ShellMethod(key = "owner-name", value="Set or change the business owner name")
-	public String setBusinessOwnerName(
+	@ShellMethod(value="Set or change the business owner name")
+	public void setOwnerName(
 		@ShellOption(defaultValue = "Owner") String arg
 	) {
-		this.dataCache.getBusiness().setOwnerName(arg);
-		return "Owner name updated to: " + arg;
+		this.repository.setOwnerName(arg);
+		System.out.println("Owner name updated to: " + arg);
 	}
 
 	//@ShellMethod(key="log-transaction")

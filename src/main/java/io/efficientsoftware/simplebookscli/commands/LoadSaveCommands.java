@@ -1,8 +1,8 @@
 package io.efficientsoftware.simplebookscli.commands;
 
-import io.efficientsoftware.simplebookscli.model.Business;
-import io.efficientsoftware.simplebookscli.repository.DataCache;
-import io.efficientsoftware.simplebookscli.service.PersistenceService;
+import io.efficientsoftware.simplebookscli.persistence.GsonPersistenceService;
+import io.efficientsoftware.simplebookscli.persistence.JacksonPersistenceService;
+import io.efficientsoftware.simplebookscli.persistence.PersistenceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -14,7 +14,7 @@ import java.io.*;
 public class LoadSaveCommands {
 
     @Autowired
-    private PersistenceService persistenceService;
+    private JacksonPersistenceService gsonPersistenceService;
 
     private final String defaultFileName = "data.txt";
 
@@ -22,13 +22,13 @@ public class LoadSaveCommands {
     public void saveChanges(
             @ShellOption(defaultValue = defaultFileName) String arg
     ) throws IOException {
-        persistenceService.save(arg);
+        gsonPersistenceService.save(arg);
     }
 
     @ShellMethod(key = "load", value = "Load business from file")
     public void load(
             @ShellOption(defaultValue = defaultFileName) String arg
-    ) throws IOException, ClassNotFoundException {
-        persistenceService.load(arg);
+    ) throws Exception {
+        gsonPersistenceService.load(arg);
     }
 }
