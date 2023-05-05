@@ -7,6 +7,7 @@ import org.springframework.shell.component.flow.ComponentFlow;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,19 +16,23 @@ import java.util.Map;
 public class TimekeepingService {
 
     @Autowired
-    private TimekeepingFlowBuilder hourlyContractFlowBuilder;
-
-    @Autowired
     private ComponentFlow.Builder componentFlowBuilder;
 
     @Autowired
     private TimekeepingRepository repo;
 
-    public HourlyContract createHourlyContract() {
+    public HourlyContract createHourlyContract2() {
         ComponentFlow flow = createHourlyContractFlow();
         HourlyContract hourlyContract = HourlyContract.buildFromResult(flow.run());
         this.repo.addHourlyContract(hourlyContract);
         return hourlyContract;
+    }
+
+    public void createHourlyContract(String customerName, double hourlyRate) {
+        HourlyContract contract = new HourlyContract();
+        contract.setContractName(customerName);
+        contract.setHourlyRate(hourlyRate);
+        this.repo.addHourlyContract(contract);
     }
 
     private ComponentFlow createHourlyContractFlow() {
@@ -51,21 +56,6 @@ public class TimekeepingService {
         }
     }
 
-    public void logTime() {
-        HourlyContract hourlyContract = selectHourlyContract();
-        TimekeepingLogEntry entry = createTimekeepingLogEntry(); // remove arg and build flow
-        hourlyContract.getTimeKeepingLog().add(entry);
-    }
-
-    public TimekeepingLogEntry createTimekeepingLogEntry() {
-        // Flowbuilder
-        TimekeepingLogEntry logEntry = new TimekeepingLogEntry();
-        logEntry.setDate(Date.from(Instant.now()));
-        logEntry.setHours(8);
-        logEntry.setDescriptionOfWork("");
-        return  logEntry;
-    }
-
     private ComponentFlow createTimekeepingLogEntryFlow() {
         return componentFlowBuilder.clone().reset()
                 .withStringInput("date")
@@ -82,6 +72,7 @@ public class TimekeepingService {
         ComponentFlow.ComponentFlowResult result = flow.run();
         String contractName = result.getContext().get("selected");
         HourlyContract hourlyContract = this.repo.getContractByName(contractName);
+        System.out.println("Selected contract:" + hourlyContract.getContractName());
         return hourlyContract;
     }
 
@@ -95,7 +86,7 @@ public class TimekeepingService {
         Map<String, String> items = new HashMap<>();
 
         for (HourlyContract hourlyContract : this.repo.getAllContracts()) {
-            items.put(hourlyContract.getCustomerName(), hourlyContract.getCustomerName());
+            items.put(hourlyContract.getContractName(), hourlyContract.getContractName());
         }
 
         ComponentFlow flow = componentFlowBuilder.clone().reset()
@@ -105,5 +96,16 @@ public class TimekeepingService {
                 .and()
                 .build();
         return flow;
+    }
+
+    public void logTime(int hoursWorked, String description, String date , String contractName) {
+        HourlyContract hourlyContract = this.repo.getContractByName(contractName);
+        TimekeepingLogEntry entry = TimekeepingLogEntry.builder()
+                .hours(hoursWorked)
+                .date(date != null ? LocalDate.parse(date) : LocalDate.now())
+                .descriptionOfWork(description)
+                .build();
+        hourlyContract.timeKeepingLog.add(entry);
+        System.out.println("Entry added to contract:" + contractName);
     }
 }

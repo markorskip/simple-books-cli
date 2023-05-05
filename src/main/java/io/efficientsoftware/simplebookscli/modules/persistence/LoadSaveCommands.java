@@ -11,7 +11,7 @@ import java.io.*;
 public class LoadSaveCommands {
 
     @Autowired
-    private JacksonPersistenceService gsonPersistenceService;
+    private JacksonPersistenceService jacksonPersistenceService;
 
     private final String defaultFileName = "data.txt";
 
@@ -19,13 +19,13 @@ public class LoadSaveCommands {
     public void saveChanges(
             @ShellOption(defaultValue = defaultFileName) String arg
     ) throws IOException {
-        gsonPersistenceService.save(arg);
+        jacksonPersistenceService.save(arg);
     }
 
     @ShellMethod(key = "load", value = "Load business from file")
     public void load(
             @ShellOption(defaultValue = defaultFileName) String arg
     ) throws Exception {
-        gsonPersistenceService.load(arg);
+        jacksonPersistenceService.load(arg);
     }
 }

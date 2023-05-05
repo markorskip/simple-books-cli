@@ -20,10 +20,13 @@ public class TimekeepingRepository {
         this.centralRepository.getHourlyContracts().add(hourlyContract);
     }
 
-    public HourlyContract getContractByName(String customerName) {
+    public HourlyContract getContractByName(String contractName) {
+        if (contractName == null) {
+            return this.centralRepository.getHourlyContracts().stream().findFirst().get();
+        }
         return this.centralRepository
                 .getHourlyContracts().stream()
-                .filter(x-> x.getCustomerName().equals(customerName)).findFirst().get();
+                .filter(x-> x.getContractName().toLowerCase().equals(contractName.toLowerCase())).findFirst().get();
     }
 
     public java.util.Collection<HourlyContract> getAllContracts() {

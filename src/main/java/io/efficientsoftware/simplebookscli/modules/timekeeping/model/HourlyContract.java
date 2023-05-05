@@ -5,7 +5,6 @@ import org.springframework.shell.component.context.ComponentContext;
 import org.springframework.shell.component.flow.ComponentFlow;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +12,7 @@ import java.util.Set;
 @Data
 public class HourlyContract implements Serializable {
 	
-	private String customerName;
+	private String contractName;
 	private boolean isActive;
 	private double hourlyRate;
 	private Date startOfContract;
@@ -25,12 +24,12 @@ public class HourlyContract implements Serializable {
 		HourlyContract hourlyContract = new HourlyContract();
 		hourlyContract.setActive(true);
 		hourlyContract.setHourlyRate(Double.parseDouble(ctx.get("hourlyRate")));
-		hourlyContract.setCustomerName(ctx.get("customerName") != null ? ctx.get("customerName") : "NoName");
+		hourlyContract.setContractName(ctx.get("customerName") != null ? ctx.get("customerName") : "NoName");
 		return hourlyContract;
 	}
 
     public void display() {
-		System.out.println("Customer Name:" + this.customerName);
+		System.out.println("Contract Name:" + this.contractName);
 		System.out.println("Hourly Rate: " + this.hourlyRate);
 		System.out.println("Active?" + this.isActive);
 		System.out.println("Time Entries");

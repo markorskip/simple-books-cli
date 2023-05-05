@@ -1,12 +1,15 @@
 package io.efficientsoftware.simplebookscli.modules.timekeeping.model;
 
+import lombok.Builder;
 import lombok.Data;
-import java.util.Date;
+
+import java.time.LocalDate;
 
 @Data
+@Builder
 public class TimekeepingLogEntry {
 	
-	public Date date;
+	public LocalDate date;
 	public String descriptionOfWork;
 	public int hours;
 

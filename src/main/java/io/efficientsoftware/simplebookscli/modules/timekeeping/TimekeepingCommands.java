@@ -3,6 +3,7 @@ package io.efficientsoftware.simplebookscli.modules.timekeeping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellOption;
 
 @ShellComponent
 public class TimekeepingCommands {
@@ -11,8 +12,8 @@ public class TimekeepingCommands {
     private TimekeepingService service;
 
     @ShellMethod(value = "Create An Hourly Work Contract")
-    public void createHourlyContract() {
-        service.createHourlyContract();
+    public void createHourlyContract(String customerName, double hourlyRate) {
+        service.createHourlyContract(customerName,hourlyRate);
     }
     
     @ShellMethod(value = "Edit or Delete an Hourly Contract")
@@ -21,7 +22,11 @@ public class TimekeepingCommands {
     }
 
     @ShellMethod(value = "Log Time To A Specific Hourly Contract")
-    public void logTime() { service.logTime(); }
+    public void logTime(int hoursWorked,
+                        String description,
+                        @ShellOption(defaultValue = ShellOption.NULL) String date,
+                        @ShellOption(defaultValue = ShellOption.NULL) String contractName
+                        ) { service.logTime(hoursWorked, description, date, contractName); }
 
     @ShellMethod(value = "Edit or Delete a Time Log Entry")
     public void editTimeLog() { service.editLog(); }

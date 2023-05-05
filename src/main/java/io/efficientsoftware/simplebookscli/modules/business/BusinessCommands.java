@@ -27,6 +27,11 @@ public class BusinessCommands {
 		System.out.println("Owner name updated to: " + ownerName);
 	}
 
+	@ShellMethod(value="Reset and create new business")
+	public void createNewBusiness(@ShellOption(defaultValue = "demo") String businessName) {
+		this.service.createNewBusiness(businessName);
+	}
+
 
 //	@ShellMethod(key="log-mileage")
 //	public void logMileage(){

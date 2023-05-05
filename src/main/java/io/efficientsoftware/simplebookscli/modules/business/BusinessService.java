@@ -16,4 +16,8 @@ public class BusinessService {
     public void setOwnerName(String ownerName) {
         this.repo.setOwnerName(ownerName);
     }
+
+    public void createNewBusiness(String businessName) {
+        this.repo.createNewBusiness(businessName);
+    }
 }
