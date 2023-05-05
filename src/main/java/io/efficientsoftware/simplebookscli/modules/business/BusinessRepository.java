@@ -10,6 +10,10 @@ public class BusinessRepository {
     @Autowired
     private CentralRepository centralRepository;
 
+    public BusinessRepository(CentralRepository centralRepository) {
+        this.centralRepository = centralRepository;
+    }
+
     public void setOwnerName(String arg) {
         this.centralRepository.getBusinessInformation().setOwnerName(arg);
     }

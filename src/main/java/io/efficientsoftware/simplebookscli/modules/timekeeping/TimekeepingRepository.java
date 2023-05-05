@@ -12,6 +12,10 @@ public class TimekeepingRepository {
     @Autowired
     private CentralRepository centralRepository;
 
+    public TimekeepingRepository(CentralRepository centralRepository) {
+        this.centralRepository = centralRepository;
+    }
+
     public void addHourlyContract(HourlyContract hourlyContract) {
         this.centralRepository.getHourlyContracts().add(hourlyContract);
     }

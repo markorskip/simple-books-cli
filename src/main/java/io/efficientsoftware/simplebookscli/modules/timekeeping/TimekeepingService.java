@@ -2,8 +2,6 @@ package io.efficientsoftware.simplebookscli.modules.timekeeping;
 
 import io.efficientsoftware.simplebookscli.modules.timekeeping.model.HourlyContract;
 import io.efficientsoftware.simplebookscli.modules.timekeeping.model.TimekeepingLogEntry;
-import io.efficientsoftware.simplebookscli.repository.DataCache;
-import io.efficientsoftware.simplebookscli.repository.CentralRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.component.flow.ComponentFlow;
 import org.springframework.stereotype.Service;
