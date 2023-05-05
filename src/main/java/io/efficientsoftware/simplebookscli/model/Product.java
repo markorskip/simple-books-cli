@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli.modules.product.model;
+package io.efficientsoftware.simplebookscli.model;
 
 import java.util.List;
 

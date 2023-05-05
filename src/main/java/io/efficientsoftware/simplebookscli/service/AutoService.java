@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli.modules.auto;
+package io.efficientsoftware.simplebookscli.service;
 
 public class AutoService {
 

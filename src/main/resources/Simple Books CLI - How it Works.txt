@@ -1,0 +1,109 @@
+Are you a sole proprietor, 1099contractor, or running your own business with no employees?
+
+Before your options for managing your business are expensive web based cloud apps (with never ending monthly subscriptions)
+or managing everything manually in a spreadsheet.
+
+Until now.
+
+SimpleBooksCLI - is a buy once own forever simple bookkeeping app.
+
+Generate invoices and financial reports
+and log mileage, financial transactions, and time worked to various contracts.
+
+It's simple and it works.
+
+Run the demo FREE today.
+
+Buy Now for only $49 - own forever.
+
+
+
+Online bookkeeping apps force a user to login, use a web browser, and follow point and click procedures to documents
+Spreadsheets allow a user to store anything anyway, but don't provide any validation
+
+SimpleBooksCLI
+
+1st choice:
+create-new-business
+load-business
+
+
+Once a business id loaded:
+Save
+Save and Exit
+Discard Changes
+
+
+log-time-worked
+    -> select the project (or create new)
+        -> log time
+        -> add another or exit back to home
+
+log-financial-transaction
+    -> select account (or create new) (where the money is coming from or to)
+        -> select category (if auto, select the vehicle the expense was for) - what is is for
+            ->if auto, select the vehicle (or create new)
+                -> Log the data, amount, vender, description
+    -> add another or back to home
+
+log-vehicle-mileage
+    ->select the vehicle (or create new)
+        ->log mileages
+        ->add another or back to home
+
+log-note
+    >free tax area that will store dateNoteLogged, and note
+    -> add another or back to home
+
+generate-invoice
+    ->select project
+        ->select dates
+            -> display rows (copy and paste)
+                ->or select template
+                    -> generate pdf
+
+generate-financial-report
+    ->select tax year
+        -> generate csv
+
+
+generate-auto-report
+    -> select vehicle (or all)
+        -> select tax year
+            -> getMileageAtBegOfYear
+
+answer-questions
+
+    ->any answered facts are asked of the user - stuff like what is the end of year mileage for this vehicle... etc...
+
+
+So the way it works:
+
+The user just starts using the program.  If something is needed, the program asks for it. So to start logging, it's the bare mininmum questions to get started.
+
+When reports are run, some paramaters are given each time, some are more permeant.  Facts that stick around are stored.  They can also be answered ahead of time using the answer-questions tool.
+
+
+Run the program
+Load your business
+Log {time, money, mileage, notes}
+Generate {invoice, income and expense reports, auto reports, note archives)
+
+Initial Modules:
+TimeKeeping and Invoice Generation
+Bookkeeping and Report Generation
+Mileage Tracking and Auto Report Generation
+Note Taking and Note Reporting
+
+Each module walks the user through adding items to always ensure they are in sync and valid for reporting. So unlike a spreadsheet, it maintains relationships between the data.  All the data is related to the business and much of it is
+interrelated.
+
+A spreadsheet cannot do this (it doesn't have a wizard for adding date)
+
+An online program does provide guardrailes but requires a monthly subscription, learning the user interface, and manually completing all the tasks.  SimpleBooksCLI provides the guardrails of a web app, but the efficieny of using a command
+
+
+
+
+
+

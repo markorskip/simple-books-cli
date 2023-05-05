@@ -1,13 +1,12 @@
 package io.efficientsoftware.simplebookscli.repository;
 
 
-import io.efficientsoftware.simplebookscli.modules.timekeeping.model.HourlyContract;
-import io.efficientsoftware.simplebookscli.sharedmodel.Business;
-import io.efficientsoftware.simplebookscli.modules.business.BusinessInformation;
+import io.efficientsoftware.simplebookscli.model.HourlyContract;
+import io.efficientsoftware.simplebookscli.model.Business;
+import io.efficientsoftware.simplebookscli.model.BusinessInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
 import java.util.Set;
 
 /**

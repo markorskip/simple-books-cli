@@ -1,7 +1,8 @@
-package io.efficientsoftware.simplebookscli.modules.timekeeping;
+package io.efficientsoftware.simplebookscli.service;
 
-import io.efficientsoftware.simplebookscli.modules.timekeeping.model.HourlyContract;
-import io.efficientsoftware.simplebookscli.modules.timekeeping.model.TimekeepingLogEntry;
+import io.efficientsoftware.simplebookscli.repository.TimekeepingRepository;
+import io.efficientsoftware.simplebookscli.model.HourlyContract;
+import io.efficientsoftware.simplebookscli.model.TimekeepingLogEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.component.flow.ComponentFlow;
 import org.springframework.stereotype.Service;

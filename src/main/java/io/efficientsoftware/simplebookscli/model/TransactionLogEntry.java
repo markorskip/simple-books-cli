@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli.modules.ledger.model;
+package io.efficientsoftware.simplebookscli.model;
 
 import lombok.Data;
 
@@ -12,6 +12,6 @@ public class TransactionLogEntry {
 	public String vendor;
 	public String description;
 	public String account;
-	public String category;
+	public String category; // This need to be an account
 	
 }

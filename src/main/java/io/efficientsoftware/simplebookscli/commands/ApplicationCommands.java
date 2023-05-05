@@ -1,14 +1,16 @@
-package io.efficientsoftware.simplebookscli.modules.persistence;
+package io.efficientsoftware.simplebookscli.commands;
 
+import io.efficientsoftware.simplebookscli.service.JacksonPersistenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
-import java.io.*;
+import java.io.IOException;
 
 @ShellComponent
-public class LoadSaveCommands {
+public class ApplicationCommands {
+
 
     @Autowired
     private JacksonPersistenceService jacksonPersistenceService;
@@ -16,7 +18,7 @@ public class LoadSaveCommands {
     private final String defaultFileName = "data.txt";
 
     @ShellMethod(key = "save", value = "Save all changes to file")
-    public void saveChanges(
+    public void saveAs(
             @ShellOption(defaultValue = defaultFileName) String arg
     ) throws IOException {
         jacksonPersistenceService.save(arg);
@@ -28,4 +30,23 @@ public class LoadSaveCommands {
     ) throws Exception {
         jacksonPersistenceService.load(arg);
     }
-}
+
+    @ShellMethod
+    public void createNewBusiness() {
+        // Todo availability when nothing is loaded
+    }
+
+    @ShellMethod
+    public void save() {
+        //TODO availability only when changes have been made
+    }
+
+    @ShellMethod
+    public void discardChanges() {
+        //TODO availability only when changes have been made
+    }
+
+
+
+
+ }

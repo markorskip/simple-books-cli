@@ -281,3 +281,37 @@
 1683256187070:create-new-business "Efficient Software LLC"
 1683256189472:save
 1683256244743:exit
+1683256386500:create-new-business demoFun
+1683256388887:view
+1683256390158:report
+1683256410215:create-hourly-contract "Shotspotter LLC" 85.00
+1683256412538:report
+1683256432661:log-time 8 "did somethings"
+1683256440827:report
+1683256455811:help
+1683256464873:view-time-logs
+1683256471149:report
+1683256664461:exit
+1683256744049:help
+1683256756852:set-business-name "test"
+1683256764028:create-new-business "Testing"
+1683256766551:report
+1683256767480:save
+1683256818907:create-hourly-contract --help
+1683256845210:create-hourly-contract --customerName "Shotspotter" --hourlyRate 85.00
+1683256848674:report
+1683256855692:create-hourly-contract --customerName "Shotspotter" --hourlyRate 85.00
+1683256859358:report
+1683256864861:create-hourly-contract --customerName "Shotspotter" --hourlyRate 85.00
+1683256877576:create-hourly-contract --customerName "Shotspotter" --hourlyRate 85.01
+1683256881001:create-hourly-contract --customerName "Shotspotter" --hourlyRate 85.03
+1683256882250:report
+1683256914092:log-time 8 "did some things" Shotspotter
+1683256924898:log-time 8 "did some things" 05/4/2023 Shotspotter
+1683256932090:log-time 8 "did some things" 05/04/2023 Shotspotter
+1683256944805:stacktrace
+1683256959723:log-time help
+1683256963613:log-time --help
+1683256987485:log-time 8 "did some things" 5/4/2023 Shotspotter
+1683257000015:log-time 8 "did some things" "5/4/2023" Shotspotter
+1683257007230:log-time 8 "did some things"

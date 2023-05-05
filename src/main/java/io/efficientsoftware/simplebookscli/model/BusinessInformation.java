@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli.modules.business;
+package io.efficientsoftware.simplebookscli.model;
 
 import lombok.Data;
 

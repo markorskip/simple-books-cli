@@ -1,6 +1,5 @@
-package io.efficientsoftware.simplebookscli.modules.homeoffice.model;
+package io.efficientsoftware.simplebookscli.model;
 
-import io.efficientsoftware.simplebookscli.modules.ledger.model.TransactionLogEntry;
 import lombok.Data;
 
 import java.util.Set;

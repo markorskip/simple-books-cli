@@ -1,8 +1,7 @@
-package io.efficientsoftware.simplebookscli.modules.timekeeping;
+package io.efficientsoftware.simplebookscli.repository;
 
 
-import io.efficientsoftware.simplebookscli.modules.timekeeping.model.HourlyContract;
-import io.efficientsoftware.simplebookscli.repository.CentralRepository;
+import io.efficientsoftware.simplebookscli.model.HourlyContract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

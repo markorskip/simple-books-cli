@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli.modules.timekeeping.model;
+package io.efficientsoftware.simplebookscli.model;
 
 import lombok.Data;
 import org.springframework.shell.component.context.ComponentContext;

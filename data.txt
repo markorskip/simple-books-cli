@@ -1,1 +1,1 @@
-{"businessInformation":{"businessName":"Efficient Software LLC","ownerName":null},"hourlyContracts":[],"products":[],"directExpenses":[],"directRevenue":[],"vehiclesUsedForBusiness":[],"homeOffice":{"label":null,"sqftHome":0,"sqftOffice":0,"noOfMonthsUsedForBusinessIn2023":0,"homeExpenses":null},"categorizationRules"
+{"businessInformation":{"businessName":"Testing","ownerName":null},"hourlyContracts":[]}

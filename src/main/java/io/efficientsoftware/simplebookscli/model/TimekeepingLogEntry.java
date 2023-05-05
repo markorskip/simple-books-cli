@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli.modules.timekeeping.model;
+package io.efficientsoftware.simplebookscli.model;
 
 import lombok.Builder;
 import lombok.Data;
