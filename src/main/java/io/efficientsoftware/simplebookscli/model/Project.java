@@ -10,26 +10,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-public class Project implements Serializable {
+public class Project {
 	
 	private String name;
-	private double hourlyRate;
+	private String hourlyRate;
 	public Set<TimekeepingLogEntry> timeKeepingLog = new HashSet<>();
 
-	public static Project buildFromResult(ComponentFlow.ComponentFlowResult result) {
-		ComponentContext<?> ctx = result.getContext();
-		Project project = new Project();
-		project.setHourlyRate(Double.parseDouble(ctx.get("hourlyRate")));
-		project.setName(ctx.get("name") != null ? ctx.get("name") : "NoName");
-		return project;
-	}
-
     public void display() {
-		System.out.println("Contract Name:" + this.name);
+		System.out.println();
+		System.out.println("Project Name: " + this.name);
 		System.out.println("Hourly Rate: " + this.hourlyRate);
 		System.out.println("Time Entries");
+		System.out.println("    Date,   Description,  				Hours Worked");
 		for (TimekeepingLogEntry entry: this.timeKeepingLog) {
-			entry.display();
+			System.out.print("    " +entry.getDate() + ", ");
+			System.out.print(entry.getDescriptionOfWork()+ ", ");
+			System.out.print(entry.getHours());
+			System.out.println();
 		}
     }
 }

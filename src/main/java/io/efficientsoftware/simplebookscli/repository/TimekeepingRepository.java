@@ -5,6 +5,8 @@ import io.efficientsoftware.simplebookscli.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Set;
+
 @Component
 public class TimekeepingRepository {
 
@@ -24,7 +26,11 @@ public class TimekeepingRepository {
                 .filter(x-> x.getName().toLowerCase().equals(contractName.toLowerCase())).findFirst().get();
     }
 
-    public java.util.Collection<Project> getAllContracts() {
+    public Set<Project> getProjects() {
         return this.centralRepository.getProjects();
+    }
+
+    public void deleteProject(Project project) {
+        this.centralRepository.getProjects().remove(project);
     }
 }

@@ -53,7 +53,7 @@ public class ApplicationCommands {
                 .withStringInput(NAME)
                 .name("Business Name")
                 .and()
-                .withStringInput(FILE_PATH)
+                .withPathInput(FILE_PATH)
                 .name("File To Save to")
                 .and().build();
 

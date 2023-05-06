@@ -1,1 +1,1 @@
-{"name":"Test Business","projects":[]}
+{"name":"Test Business","projects":[{"name":"Shotspotter LLC","hourlyRate":"85","timeKeepingLog":[{"date":"3/5/2023","descriptionOfWork":"test description","hours":"8"},{"date":"5/4/2023","descriptionOfWork":"Updated log - building out stuff","hours":"8"}]},{"name":"Funproject","hourlyRate":"0","timeKeepingLog":[{"date":"2023-05-05","descriptionOfWork":"testing","hours":"8"}]},{"name":"SimpleBooksCLI","hourlyRate":"0","timeKeepingLog":[{"date":"2023-05-05","descriptionOfWork":"Built init prototype","hours":"8"}]}]}
