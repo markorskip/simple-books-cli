@@ -9,6 +9,10 @@ import lombok.Data;
 @Data
 public class DataCache {
 
+	private boolean unsavedChanges = false;
+
 	private Business business;
+
+	public String fileToSaveTo;
 
 }

@@ -1,17 +1,16 @@
 package io.efficientsoftware.simplebookscli.service;
 
 import io.efficientsoftware.simplebookscli.repository.TimekeepingRepository;
-import io.efficientsoftware.simplebookscli.model.HourlyContract;
+import io.efficientsoftware.simplebookscli.model.Project;
 import io.efficientsoftware.simplebookscli.model.TimekeepingLogEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.component.flow.ComponentFlow;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class TimekeepingService {
@@ -22,73 +21,44 @@ public class TimekeepingService {
     @Autowired
     private TimekeepingRepository repo;
 
-    public HourlyContract createHourlyContract2() {
-        ComponentFlow flow = createHourlyContractFlow();
-        HourlyContract hourlyContract = HourlyContract.buildFromResult(flow.run());
-        this.repo.addHourlyContract(hourlyContract);
-        return hourlyContract;
-    }
-
-    public void createHourlyContract(String customerName, double hourlyRate) {
-        HourlyContract contract = new HourlyContract();
-        contract.setContractName(customerName);
-        contract.setHourlyRate(hourlyRate);
-        this.repo.addHourlyContract(contract);
-    }
-
-    private ComponentFlow createHourlyContractFlow() {
+    private ComponentFlow createProjectFlow() {
         return componentFlowBuilder.clone().reset()
-                .withStringInput("customerName")
-                .name("Customer Name")
+                .withStringInput("name")
+                .name("Project Name")
                 .and()
                 .withStringInput("hourlyRate")
-                .name("HourlyRate")
+                .name("Hourly Rate")
                 .and().build();
     }
 
+    public Project selectProject() {
+        Project result;
+        ComponentFlow selectProjectFlow = selectProjectFlow();
+        ComponentFlow.ComponentFlowResult selectProjectFlowResult = selectProjectFlow.run();
+        String selected = selectProjectFlowResult.getContext().get("selected");
 
-    public void editContract() {
-
-    }
-
-    public void viewTimeLogs() {
-        for (HourlyContract hourlyContract : this.repo.getAllContracts()) {
-            hourlyContract.display();
+        if (Objects.equals(selected, NEW_PROJECT)) {
+            ComponentFlow createProjectFlow = createProjectFlow();
+            ComponentFlow.ComponentFlowResult createProjectFlowResult = createProjectFlow.run();
+            result = Project.buildFromResult(createProjectFlowResult);
+            this.repo.addHourlyContract(result);
+        } else {
+            result = this.repo.getProjectByName(selected);
         }
+
+        System.out.println("Selected contract:" + result.getName());
+        return result;
     }
 
-    private ComponentFlow createTimekeepingLogEntryFlow() {
-        return componentFlowBuilder.clone().reset()
-                .withStringInput("date")
-                .name("Date")
-                .defaultValue(Date.from(Instant.now()).toString())
-                .and()
-                .withStringInput("hourlyRate")
-                .name("HourlyRate")
-                .and().build();
-    }
+    private static final String NEW_PROJECT = "NEW PROJECT";
 
-    public HourlyContract selectHourlyContract() {
-        ComponentFlow flow = selectHourlyContractFlow();
-        ComponentFlow.ComponentFlowResult result = flow.run();
-        String contractName = result.getContext().get("selected");
-        HourlyContract hourlyContract = this.repo.getContractByName(contractName);
-        System.out.println("Selected contract:" + hourlyContract.getContractName());
-        return hourlyContract;
-    }
-
-    public void editLog() {
-    }
-
-    public void generateAnInvoice() {
-    }
-
-    private ComponentFlow selectHourlyContractFlow() {
+    private ComponentFlow selectProjectFlow() {
         Map<String, String> items = new HashMap<>();
 
-        for (HourlyContract hourlyContract : this.repo.getAllContracts()) {
-            items.put(hourlyContract.getContractName(), hourlyContract.getContractName());
+        for (Project project : this.repo.getAllContracts()) {
+            items.put(project.getName(), project.getName());
         }
+        items.put(NEW_PROJECT,NEW_PROJECT);
 
         ComponentFlow flow = componentFlowBuilder.clone().reset()
                 .withSingleItemSelector("selected")
@@ -100,13 +70,13 @@ public class TimekeepingService {
     }
 
     public void logTime(int hoursWorked, String description, String date , String contractName) {
-        HourlyContract hourlyContract = this.repo.getContractByName(contractName);
+        Project project = this.repo.getProjectByName(contractName);
         TimekeepingLogEntry entry = TimekeepingLogEntry.builder()
                 .hours(hoursWorked)
                 .date(date != null ? LocalDate.parse(date) : LocalDate.now())
                 .descriptionOfWork(description)
                 .build();
-        hourlyContract.timeKeepingLog.add(entry);
+        project.timeKeepingLog.add(entry);
         System.out.println("Entry added to contract:" + contractName);
     }
 }

@@ -16,6 +16,9 @@ Run the demo FREE today.
 
 Buy Now for only $49 - own forever.
 
+The program provides the input validation and gaurd rails to keep you from putting in wrong data.
+
+
 
 
 Online bookkeeping apps force a user to login, use a web browser, and follow point and click procedures to documents

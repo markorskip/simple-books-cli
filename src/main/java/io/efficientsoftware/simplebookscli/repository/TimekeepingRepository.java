@@ -1,7 +1,7 @@
 package io.efficientsoftware.simplebookscli.repository;
 
 
-import io.efficientsoftware.simplebookscli.model.HourlyContract;
+import io.efficientsoftware.simplebookscli.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,24 +11,20 @@ public class TimekeepingRepository {
     @Autowired
     private CentralRepository centralRepository;
 
-    public TimekeepingRepository(CentralRepository centralRepository) {
-        this.centralRepository = centralRepository;
+    public void addHourlyContract(Project project) {
+        this.centralRepository.getProjects().add(project);
     }
 
-    public void addHourlyContract(HourlyContract hourlyContract) {
-        this.centralRepository.getHourlyContracts().add(hourlyContract);
-    }
-
-    public HourlyContract getContractByName(String contractName) {
+    public Project getProjectByName(String contractName) {
         if (contractName == null) {
-            return this.centralRepository.getHourlyContracts().stream().findFirst().get();
+            return this.centralRepository.getProjects().stream().findFirst().get();
         }
         return this.centralRepository
-                .getHourlyContracts().stream()
-                .filter(x-> x.getContractName().toLowerCase().equals(contractName.toLowerCase())).findFirst().get();
+                .getProjects().stream()
+                .filter(x-> x.getName().toLowerCase().equals(contractName.toLowerCase())).findFirst().get();
     }
 
-    public java.util.Collection<HourlyContract> getAllContracts() {
-        return this.centralRepository.getHourlyContracts();
+    public java.util.Collection<Project> getAllContracts() {
+        return this.centralRepository.getProjects();
     }
 }

@@ -7,17 +7,17 @@ import org.springframework.shell.standard.ShellMethod;
 // TODO all only available if a business is loaded
 public class ReportCommands {
 
-    @ShellMethod
+    //@ShellMethod
     public void generateInvoice() {
 
     }
 
-    @ShellMethod
+    //@ShellMethod
     public void generateMoneyReport() {
 
     }
 
-    @ShellMethod
+    //@ShellMethod
     public void generateAutoReport() {
 
     }

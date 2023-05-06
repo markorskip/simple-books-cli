@@ -6,7 +6,8 @@ import java.util.Date;
 
 @Data
 public class TransactionLogEntry {
-	
+
+	// TODO double check these
 	public Date date;
 	public double amount;
 	public String vendor;
