@@ -1,7 +1,7 @@
 package io.efficientsoftware.simplebookscli.commands;
 
 import io.efficientsoftware.simplebookscli.model.Project;
-import io.efficientsoftware.simplebookscli.model.TimekeepingLogEntry;
+import io.efficientsoftware.simplebookscli.model.TimeRecord;
 import io.efficientsoftware.simplebookscli.repository.TimekeepingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.component.context.ComponentContext;
@@ -33,8 +33,8 @@ public class LogTimeCommands {
 
         switch(action) {
             case NEW -> {
-                TimekeepingLogEntry logEntry = createTimeKeepingLogEntry();
-                project.getTimeKeepingLog().add(logEntry);
+                TimeRecord logEntry = createTimeKeepingLogEntry();
+                project.getTimeTrackingLog().add(logEntry);
                 System.out.println(logEntry);
                 System.out.println("Added new log entry to project: " + project.getName());
             }
@@ -79,13 +79,13 @@ public class LogTimeCommands {
         // Always able to add new actions
         availableActions.put(ACTIONS.NEW.toString(), ACTIONS.NEW.toString());
 
-        if (project.getTimeKeepingLog().size() > 0) {
+        if (project.getTimeTrackingLog().size() > 0) {
             availableActions.put(ACTIONS.EDIT.toString(), ACTIONS.EDIT.toString());
             availableActions.put(ACTIONS.DELETE_ENTRY.toString(), ACTIONS.DELETE_ENTRY.toString());
         }
 
         // You can only delete a project if there are no more time logs associated with it
-        if (project.getTimeKeepingLog().isEmpty()) {
+        if (project.getTimeTrackingLog().isEmpty()) {
             // TODO also check there are no incomes associated with it
             availableActions.put(ACTIONS.DELETE_PROJECT.toString(),
                     ACTIONS.DELETE_PROJECT.toString());
@@ -96,7 +96,8 @@ public class LogTimeCommands {
                 .name("Available Actions")
                 .selectItems(availableActions)
                 .and()
-                .build().run().getContext().get("selected");
+                .build().run().getContext()
+                .get("selected");
 
         ACTIONS result = ACTIONS.valueOf(selected);
         System.out.println("Selected action: " + result);
@@ -137,7 +138,7 @@ public class LogTimeCommands {
         return flow.run().getContext().get("selected");
     }
 
-    public TimekeepingLogEntry createTimeKeepingLogEntry() {
+    public TimeRecord createTimeKeepingLogEntry() {
         ComponentContext<?> ctx =
                 componentFlowBuilder.clone().reset()
                         .withStringInput("date")
@@ -153,11 +154,9 @@ public class LogTimeCommands {
                         .defaultValue("")
                         .and()
                         .build().run().getContext();
-        TimekeepingLogEntry entry = new TimekeepingLogEntry();
 
-        entry.setDate(get("date", ctx));
-        entry.setDescriptionOfWork(get("desc",ctx));
-        entry.setHours(get("hoursWorked",ctx));
+        TimeRecord entry = TimeRecord.buildFromContext(ctx);
+
         return entry;
     }
 
@@ -179,9 +178,8 @@ public class LogTimeCommands {
                         .name("Hourly Pay Rate")
                         .and()
                         .build().run().getContext();
-        Project project = new Project();
-        project.setName(ctx.get("name"));
-        project.setHourlyRate(ctx.get("rate"));
+        Project project = new Project(ctx.get("name"),ctx.get("rate", Double.class));
+
         return project;
     }
 

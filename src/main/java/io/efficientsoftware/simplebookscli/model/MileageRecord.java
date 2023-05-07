@@ -5,7 +5,7 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class MileageLogEntry {
+public class MileageRecord {
     private LocalDate date;
     private Double milesDriven;
     private String description;

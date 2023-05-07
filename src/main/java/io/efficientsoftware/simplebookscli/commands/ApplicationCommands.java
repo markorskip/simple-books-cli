@@ -2,7 +2,7 @@ package io.efficientsoftware.simplebookscli.commands;
 
 import io.efficientsoftware.simplebookscli.model.Business;
 import io.efficientsoftware.simplebookscli.repository.CentralRepository;
-import io.efficientsoftware.simplebookscli.service.JacksonPersistenceService;
+import io.efficientsoftware.simplebookscli.persistence.JacksonPersistenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.component.flow.ComponentFlow;
 import org.springframework.shell.standard.ShellComponent;

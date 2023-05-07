@@ -1,8 +1,7 @@
-package io.efficientsoftware.simplebookscli.service;
+package io.efficientsoftware.simplebookscli.persistence;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.efficientsoftware.simplebookscli.model.Business;
-import io.efficientsoftware.simplebookscli.persistence.PersistenceInterface;
 import io.efficientsoftware.simplebookscli.repository.DataCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,6 +16,10 @@ public class JacksonPersistenceService implements PersistenceInterface {
 
     @Autowired
     private DataCache dataCache;
+
+    public JacksonPersistenceService(DataCache dataCache) {
+        this.dataCache = dataCache;
+    }
 
     public void save(String arg) throws IOException {
         File file = new File(arg);

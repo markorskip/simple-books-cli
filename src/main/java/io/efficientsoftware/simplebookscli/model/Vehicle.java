@@ -9,6 +9,6 @@ public class Vehicle {
 
 	private String name;
 	private Map<Date, Double> odometerReadings = new HashMap<>();
-	private Set<MileageLogEntry> mileageLog = new HashSet<>();
+	private Set<MileageRecord> mileageLog = new HashSet<>();
 
 }

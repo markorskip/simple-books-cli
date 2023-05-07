@@ -3,7 +3,7 @@ package io.efficientsoftware.simplebookscli.repository;
 
 import io.efficientsoftware.simplebookscli.model.Business;
 import io.efficientsoftware.simplebookscli.model.Project;
-import io.efficientsoftware.simplebookscli.service.JacksonPersistenceService;
+import io.efficientsoftware.simplebookscli.persistence.JacksonPersistenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
