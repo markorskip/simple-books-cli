@@ -12,13 +12,13 @@ public class TimeRecordTest {
 
     @Test
     public void testCreatingAnEntry() {
-        TimeRecord entry = new TimeRecord(LocalDate.now(), "test", 8.0);
+        TimeRecord entry = new TimeRecord("1/1/2022", "CusomterABC","test", "8.0");
         assertNotNull(entry);
     }
 
     @Test
     public void testCreatingInvalidEntryHours() {
         assertThrows(IllegalArgumentException.class,
-                () -> new TimeRecord(LocalDate.now(), "test", 25.0));
+                () -> new TimeRecord("1/1/2022", "CusomterABC", "desc","25.0"));
     }
 }

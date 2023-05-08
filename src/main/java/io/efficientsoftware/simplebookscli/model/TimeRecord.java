@@ -2,57 +2,42 @@ package io.efficientsoftware.simplebookscli.model;
 
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
-import org.springframework.shell.component.context.ComponentContext;
 
-import java.time.LocalDate;
-
-@ToString
 @EqualsAndHashCode
-public class TimeRecord {
-	
-	private LocalDate date; // Todo change to actual date
-	private String descriptionOfWork;
+@Getter
+public class TimeRecord extends BaseRecord {
+
+	private String account;
+	private String description;
 	private double hours;
 
-	public TimeRecord(LocalDate date, String descriptionOfWork, double hours) {
-		this.date = date;
-		this.descriptionOfWork = descriptionOfWork;
-		if (hours > 24) throw new IllegalArgumentException("Hours worked in a day cannot be greater then 24");
-		this.hours = hours;
-	}
- //unit test
-	public TimeRecord(String descriptionOfWork, double hours) {
-		this.date = LocalDate.now();
-		this.descriptionOfWork = descriptionOfWork;
-		if (hours > 24) throw new IllegalArgumentException("Hours worked in a day cannot be greater then 24");
-		this.hours = hours;
-	}
-
-	// unit test
-	public TimeRecord(String descriptionOfWork) {
-		this.date = LocalDate.now();
-		this.descriptionOfWork = descriptionOfWork;
-		this.hours = 8.0;
+	/**
+	 * A time record can be used for invoicing, or tracking time on a project.
+	 *
+	 * Use command log-time --account "customer" --date "01/31/2022" --description "desc" --hours "8"
+	 * or short hand log-time "customer,01/31/2022,description,8"
+	 * @param account Can be a customer, project, or anything you want to track time on
+	 * @param date the Date the time was worked
+	 * @param description description Of the Work
+	 * @param hours Number of hours
+	 */
+	public TimeRecord(String date, String account, String description, String hours) {
+		super(date);
+		this.account = account;
+		this.description = description;
+		this.hours = parseDouble(hours);
+		if (this.hours > 24) throw new IllegalArgumentException("Hours worked in a day cannot be greater then 24");
 	}
 
-	public static TimeRecord buildFromContext(ComponentContext<?> ctx) {
-		LocalDate  date = ctx.get("date", LocalDate.class);
-		String desc = ctx.get("desc");
-		Double hours = ctx.get("hoursWorked", Double.class);
-		TimeRecord result = new TimeRecord(date, desc, hours);
-		return result;
-	}
-
-	public LocalDate getDate() {
-		return this.date;
-	}
-
-	public String getDescriptionOfWork() {
-		return descriptionOfWork;
-	}
-
-	public double getHours() {
-		return hours;
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("TimeRecord").append('\n');
+		sb.append(" Date: ").append(date).append(SPACER);
+		sb.append(" Account: ").append(account).append(SPACER);
+		sb.append(" Hours: ").append(hours).append('\n');
+		sb.append(" Description: ").append(description).append('\n');
+		return sb.toString();
 	}
 }

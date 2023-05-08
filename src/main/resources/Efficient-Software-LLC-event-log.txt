@@ -1,0 +1,6 @@
+create-business --name "Efficient Software LLC"
+log-time --date "1/1/2022" --account "ShotSpotter" --description "CG-5561 - Remove string literal display name parsing. CG-5560 - Debugged broken query. CG-5525 inquired on requirements" --hoursToWorked "8"
+log-time --date "1/1/2022" --account "ShotSpotter" --description "CG-5560 - Fixed criteria builder queries to include full results on date of birth range person searches." --hoursToWorked "8"
+log-time --date "1/1/2022" --account "ShotSpotter" --description "CG-5554 - Added dynamic date-of-birth autopopulation on form.  Added function rendering to date fields.  CJIS Training." --hoursToWorked "8"
+log-time --date "1/1/2022" --account "ShotSpotter" --description "CG-5525 - Per feedback, analyzed visualizer location label rendering for port-over solution to doc results.  Unable to map logic.  Scheduled meeting to discuss options." --hoursToWorked "8"
+log-time --date "1/1/2022" --account "ShotSpotter" --description "CG-5244 - Implement access controls to mugshots.  Analyzed existing access control patterns. Analyzed where access controls could be applied." --hoursToWorked "8"

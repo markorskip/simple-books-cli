@@ -460,3 +460,29 @@
 1683345591040:log-time
 1683345634747:help
 1683345672757:exit
+1683509403584:help
+1683509409660:log-time --help
+1683509445460:log-time --date "1/1/2022" --account "Shotspotter" --description "Worked hard" --hoursToWorked "8"
+1683509561691:exit
+1683509575181:log-time --date "1/1/2022" --account "Shotspotter" --description "Worked hard" --hoursToWorked "8"
+1683509582611:view-time-logs
+1683509587310:log-time --date "1/1/2022" --account "Shotspotter" --description "Worked hard" --hoursToWorked "9"
+1683509613198:view-time-logs
+1683509769144:script
+1683509814671:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683509818657:view-time-logs
+1683510377479:exit
+1683510390193:view
+1683510406625:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683510410901:view
+1683510449826:view-time-logs
+1683510689523:exit
+1683510703326:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683510713279:view
+1683510719224:view-time-logs
+1683510850433:exit
+1683510866222:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683510876179:view-time-logs
+1683511300321:exit
+1683511313485:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683511315479:view
