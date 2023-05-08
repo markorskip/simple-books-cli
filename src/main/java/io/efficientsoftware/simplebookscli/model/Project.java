@@ -12,7 +12,8 @@ public class Project {
 	private Double hourlyRate;
 	public Set<TimeRecord> timeTrackingLog = new HashSet<>();
 
-	public Project(String name, double hourlyRate) {
+	// Only other model classes can directly create projects
+	Project(String name, double hourlyRate) {
 		if (hourlyRate < 0) throw new IllegalArgumentException("Hourly Rate must be greater than 0");
 		this.hourlyRate = hourlyRate;
 		this.name = name;
