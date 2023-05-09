@@ -2,14 +2,13 @@ package io.efficientsoftware.simplebookscli.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.hibernate.validator.constraints.br.TituloEleitoral;
 
 @EqualsAndHashCode
 @ToString
-public class OdometerRecord extends BaseRecord {
+public class OdometerEvent extends BaseEvent {
 
-    private double mileageReading;
     private String vehicleName;
+    private double mileageReading;
 
     /**
      * Records mileage, mainly at the beginning and end of the year to determine
@@ -18,7 +17,7 @@ public class OdometerRecord extends BaseRecord {
      * @param mileageReading
      * @param vehicleName
      */
-    public OdometerRecord(String date, String mileageReading, String vehicleName) {
+    public OdometerEvent(String date, String mileageReading, String vehicleName) {
         super(date);
         this.mileageReading = parseDouble(mileageReading);
         this.vehicleName = vehicleName;

@@ -3,11 +3,10 @@ package io.efficientsoftware.simplebookscli.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.ToString;
 
 @EqualsAndHashCode
 @Getter
-public class TimeRecord extends BaseRecord {
+public class TimeEvent extends BaseEvent {
 
 	private String account;
 	private String description;
@@ -23,7 +22,7 @@ public class TimeRecord extends BaseRecord {
 	 * @param description description Of the Work
 	 * @param hours Number of hours
 	 */
-	public TimeRecord(String date, String account, String description, String hours) {
+	public TimeEvent(String date, String account, String description, String hours) {
 		super(date);
 		this.account = account;
 		this.description = description;

@@ -1,21 +1,22 @@
 package io.efficientsoftware.simplebookscli.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-public abstract class BaseRecord {
+public abstract class BaseEvent {
 
     LocalDate date;
 
     static final String SPACER = "  |  ";
 
-    public BaseRecord(String date) {
+    public BaseEvent(String date) {
         this.date = parseDate(date);
     }
 
-    private LocalDate parseDate(String date) {
-        // TODO test and make sure this work
-        //return LocalDate.parse(date);
-        return LocalDate.now();
+    public static LocalDate parseDate(String date) {
+        DateTimeFormatter formatter =
+                 DateTimeFormatter.ofPattern("M/d/y");
+        return LocalDate.parse(date,formatter);
     }
 
     Double parseDouble(String number) {

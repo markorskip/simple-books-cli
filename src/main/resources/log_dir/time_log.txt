@@ -1,0 +1,11 @@
+lt "1/1/2022" "ShotSpotter" "CG-5561 - Remove string literal display name parsing. CG-5560 - Debugged broken query. CG-5525 inquired on requirements" "8"
+lt "1/1/2022" "ShotSpotter" "CG-5561 - 1 - Remove string literal display name parsing. CG-5560 - Debugged broken query. CG-5525 inquired on requirements"
+lt "1/1/2022" "ShotSpotter" "CG-5560 - Fixed criteria builder queries to include full results on date of birth range person searches." "8"
+lt "1/1/2022" "ShotSpotter" "CG-5554 - Added dynamic date-of-birth autopopulation on form.  Added function rendering to date fields.  CJIS Training." "8"
+lt "1/1/2022" "ShotSpotter" "CG-5525 - Per feedback, analyzed visualizer location label rendering for port-over solution to doc results.  Unable to map logic.  Scheduled meeting to discuss options." "8"
+lt "1/1/2022" "ShotSpotter" "CG-5244 - Implement access controls to mugshots.  Analyzed existing access control patterns. Analyzed where access controls could be applied." "8"
+lt "1/1/2022" "SimpleBooksCLI" "Build prototype" "8"
+lt "5/7/2022"  "SimpleBooksCLI" "Refactored" "8"
+lt "5/8/2022" "SimpleBooksCLI" "Got Modeling Working" "8"
+
+

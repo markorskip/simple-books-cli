@@ -1,14 +1,11 @@
 package io.efficientsoftware.simplebookscli.model;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
+import io.efficientsoftware.simplebookscli.calc.TimeRecordCalc;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.Locale;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -25,23 +22,16 @@ public class Business {
 
 	private String name = "Business";
 	// Core records
-	private Set<TimeRecord> timeRecords = new HashSet<>();
-	private Set<MileageRecord> mileageRecords = new HashSet<>();
-	private Set<MoneyRecord> moneyRecords = new HashSet<>();
+	private Set<TimeEvent> timeRecords = new HashSet<>();
+	private Set<MileageEvent> mileageRecords = new HashSet<>();
+	private Set<MoneyEvent> moneyRecords = new HashSet<>();
 
 	// Other
-	private Set<OdometerRecord> odometerRecords = new HashSet<>();
+	private Set<OdometerEvent> odometerRecords = new HashSet<>();
 
-	private double getTotalNoOfHoursWorked() {
-		return this.timeRecords.stream().mapToDouble(TimeRecord::getHours).sum();
-	}
 
-	private double getHoursWorkedThisMonth() {
-		Month thisMonth = LocalDate.now().getMonth();
-		return this.timeRecords.stream()
-				.filter(x->x.getDate().getMonth() == thisMonth)
-				.mapToDouble(TimeRecord::getHours).sum();
-	}
+
+
 
 	public void displaySummary() {
 		System.out.println("**********************");
@@ -50,17 +40,58 @@ public class Business {
 
 		System.out.println("Time Records");
 		System.out.println("Total no: " + timeRecords.size());
-		System.out.println("Total no of hours worked: " + getTotalNoOfHoursWorked());
-		System.out.println("No of hours worked this month: " + getHoursWorkedThisMonth());
+		System.out.println("Total no of hours worked: " + TimeRecordCalc.getTotalNoOfHoursWorked(this.timeRecords));
+		System.out.println("No of hours worked this month: " + TimeRecordCalc.getHoursWorkedThisMonth(this.timeRecords));
 		System.out.println();
 
 		System.out.println("Money Records");
 		System.out.println("Total no: " + moneyRecords.size());
 		System.out.println();
 
-		System.out.print("Mileage Records");
+		System.out.println("Mileage Records");
 		System.out.println("Total no: " + mileageRecords.size());
+		System.out.println();
+
+		System.out.print("Projects Summary");
+		for (String project : getAllProjects()) {
+			displayProjectSummary(project);
+		}
+	}
+
+	void displayProjectSummary(String project) {
+		System.out.println("  **********");
+		System.out.println("  Project Name: " + project);
+		double revenue = getTotalRevenueForProject(project);
+		System.out.println("  Total Revenue: $"  + revenue);
+		double  hoursWorked = getTotalHoursWorkedForProject(project);
+		System.out.println();
+		System.out.println("  Total Hours Worked: " + hoursWorked);
+		System.out.println("  Average hourly pay: $" + revenue/ hoursWorked);
 		System.out.println();
 	}
 
+	private double getTotalHoursWorkedForProject(String project) {
+		return this.timeRecords.stream()
+				.filter(x->x.getAccount().equals(project))
+				.mapToDouble(x->x.getHours()).sum();
+	}
+
+	private double getTotalRevenueForProject(String project) {
+		return this.moneyRecords.stream()
+				.filter(x->x.getTransactionType() == MoneyEvent.TRANSACTION_TYPE.REVENUE)
+				.filter(x->x.getAccountFrom().equals(project))
+				.mapToDouble(x->x.getAmount()).sum();
+	}
+
+	Set<String> getAllProjects() {
+		Set<String> result = new HashSet<>();
+		// Get every account time has worked on
+		result.addAll(this.timeRecords.stream().map(x->x.getAccount()).collect(Collectors.toSet()));
+		// Get every account that has brought in revenue
+		result.addAll(this.moneyRecords.stream()
+				.filter(x->x.getTransactionType() == MoneyEvent.TRANSACTION_TYPE.REVENUE).map(x->x.getAccountFrom())
+				.collect(Collectors.toSet()));
+		return result;
+
+	}
 }
