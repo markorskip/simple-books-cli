@@ -18,7 +18,7 @@ public class MoneyEvent extends DateEvent {
     private TRANSACTION_TYPE transactionType;
     private String category;
 
-    public enum TRANSACTION_TYPE { REVENUE, DIRECT_EXPENSE };
+    public enum TRANSACTION_TYPE { REVENUE, DIRECT_EXPENSE, AUTO };
     /**
      * @param date
      * @param amount Only positive numbers are allowed.  If it a return, still use direct expense but switch the accountFrom and accountTo arround
