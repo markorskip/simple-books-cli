@@ -562,3 +562,5 @@
 1683689223992:lt
 1683689225546:help
 1683689394521:exit
+1683689519916:help
+1683689530930:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/load_scripts/master_log.txt"
