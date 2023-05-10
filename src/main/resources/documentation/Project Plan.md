@@ -1,7 +1,7 @@
 # Project Plan
 - Definite the deliverables - DONE 
 - Design the architecture - DONE
-- Buy the domain simplebookscli.com
+- Buy the domain simplebookscli.com - DONE
 - Scaffold website - tutorials pages for each report (4 reports)
 - Build the app 
 - Populate the static website (need the app done to take screenshots)
