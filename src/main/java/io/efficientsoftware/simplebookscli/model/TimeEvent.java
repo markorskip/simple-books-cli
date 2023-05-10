@@ -12,6 +12,7 @@ public class TimeEvent extends DateEvent {
 	private String account;
 	private String description;
 	private double hours;
+	private String person; // Optionally, if keeping track of more then one person on a task
 
 	/**
 	 * A time record can be used for invoicing, or tracking time on a project.
@@ -23,12 +24,17 @@ public class TimeEvent extends DateEvent {
 	 * @param description description Of the Work
 	 * @param hours Number of hours
 	 */
-	public TimeEvent(String date, String account, String description, String hours) {
+	public TimeEvent(String date, String account, String description, String hours, String person) {
 		super(date);
 		this.account = account;
 		this.description = description;
 		this.hours = parseDouble(hours);
+		this.person = person;
 		if (this.hours > 24) throw new IllegalArgumentException("Hours worked in a day cannot be greater then 24");
+	}
+
+	public TimeEvent(String date, String account, String description, String hours) {
+		this(date, account, description, hours, null);
 	}
 
 	@Override

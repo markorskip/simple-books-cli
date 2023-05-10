@@ -554,3 +554,11 @@
 1683687349684:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/load_scripts/master_log.txt"
 1683687357543:view-time-logs
 1683688614856:exit
+1683688958488:help
+1683688974820:history
+1683688985408:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/load_scripts/master_log.txt\n"
+1683688990512:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/load_scripts/master_log.txt"
+1683689206248:exit
+1683689223992:lt
+1683689225546:help
+1683689394521:exit

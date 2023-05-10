@@ -21,9 +21,11 @@ public class AddEventCommands {
         addDeleteService.add(event);
     }
 
-    @ShellMethod("Log time to a project or customer")
-    public void logTime(String date, String account, String description, String hoursToWorked) {
-        TimeEvent timeRecord = new TimeEvent(date, account, description, hoursToWorked);
+    @ShellMethod(key = {"log-time","lt"}, value = "Log time to a project or customer")
+    public void logTime(String date, String account, String description, String hoursToWorked,
+                    @ShellOption(defaultValue = ShellOption.NULL) String person
+    ) {
+        TimeEvent timeRecord = new TimeEvent(date, account, description, hoursToWorked, person);
         addDeleteService.add(timeRecord);
     }
 
