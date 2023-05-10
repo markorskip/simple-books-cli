@@ -21,7 +21,7 @@ public class AddEventCommands {
         addDeleteService.add(event);
     }
 
-    @ShellMethod(key = {"log-time","lt"}, value = "Log time to a project or customer")
+    @ShellMethod(key = {"log-time","lt"}, value = "Log time to a project or customer.")
     public void logTime(String date, String account, String description, String hoursToWorked,
                     @ShellOption(defaultValue = ShellOption.NULL) String person
     ) {
@@ -29,7 +29,7 @@ public class AddEventCommands {
         addDeleteService.add(timeRecord);
     }
 
-    @ShellMethod(key = {"log-revenue","lr"}, value = "Log revenue")
+    @ShellMethod(key = {"log-revenue","lr"}, value = "Log revenue.")
     public void logRevenue(String date, String amount, String accountFrom, String accountTo,
                            @ShellOption(defaultValue = ShellOption.NULL) String description,
                            @ShellOption(defaultValue = ShellOption.NULL) String category) {
@@ -38,7 +38,7 @@ public class AddEventCommands {
         addDeleteService.add(moneyRecord);
     }
 
-    @ShellMethod(key = {"log-expense", "le" }, value = "Log a direct expense ")
+    @ShellMethod(key = {"log-expense", "le" }, value = "Log a direct expense.")
     public void logDirectExpense(String date, String amount, String accountFrom, String accountTo,
                                  @ShellOption(defaultValue = ShellOption.NULL) String description,
                                  @ShellOption(defaultValue = ShellOption.NULL) String category) {

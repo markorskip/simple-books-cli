@@ -11,6 +11,7 @@ public class Syncronizer {
 
     private String filePath;
 
+    // You can only append events or delete them.
 
     public boolean append(Event event) {
         // appends an event to a file

@@ -11,12 +11,12 @@ public class InquiryCommands {
     @Autowired
     private InquiryService inquiryService;
 
-    @ShellMethod
+    @ShellMethod("View all time logs.")
     public void viewTimeLogs() {
         this.inquiryService.displayTimeLogs();
     }
 
-    @ShellMethod
+    @ShellMethod("View a summary of the entire business")
     public void view() {
         this.inquiryService.displaySummary();
     }
@@ -30,6 +30,5 @@ public class InquiryCommands {
     public void generateAutoReport() {
 
     }
-
 
 }
