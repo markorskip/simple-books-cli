@@ -43,9 +43,8 @@ public class DateEventTest {
                 "50",
                 "Checking",
                 "Spectrum",
-                MoneyEvent.TRANSACTION_TYPE.DIRECT_EXPENSE);
+                MoneyEvent.TRANSACTION_TYPE.DIRECT_EXPENSE.toString());
     }
-
 
     @Test
     public void testEventSet(){

@@ -1,6 +1,7 @@
 package io.efficientsoftware.simplebookscli.model;
 
 import io.efficientsoftware.simplebookscli.model.core.DateEvent;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -15,6 +16,7 @@ public class MoneyEvent extends DateEvent {
     private String transactionDescription;
     private String accountTo; // ie BusinessChecking
     private TRANSACTION_TYPE transactionType;
+    private String category;
 
     public enum TRANSACTION_TYPE { REVENUE, DIRECT_EXPENSE };
     /**
@@ -24,22 +26,18 @@ public class MoneyEvent extends DateEvent {
      * @param transactionDescription
      * @param accountTo
      */
-    public MoneyEvent(String date, String amount, String accountFrom, String accountTo, String transactionDescription, String type) {
+    public MoneyEvent(String date, String amount, String accountFrom, String accountTo, String type, String transactionDescription, String category) {
         super(date);
         this.amount = parseDouble(amount);
-        this.accountFrom = accountFrom;
-        this.accountTo = accountTo;
-        this.transactionDescription = transactionDescription;
+        this.accountFrom = accountFrom; // For an expense put checking, for income put the customer / product
+        this.accountTo = accountTo; // For an expense put the vendor name
         this.transactionType = TRANSACTION_TYPE.valueOf(type);
+        this.transactionDescription = transactionDescription;
+        this.category = category;
         if (this.amount < 0) throw new IllegalArgumentException("Only use positive numbers for amounts. IE a 50 dollar expense is 50 dollars from Checking to CellPhone");
     }
 
-    public MoneyEvent(String date, String amount, String accountFrom, String accountTo, TRANSACTION_TYPE transactionType) {
-        super(date);
-        this.amount = parseDouble(amount);
-        this.accountFrom = accountFrom;
-        this.accountTo = accountTo;
-        this.transactionType = transactionType;
-        this.transactionDescription = "";
+    public MoneyEvent(String date, String amount, String accountFrom, String accountTo, String type) {
+        this(date, amount, accountFrom, accountTo, type, null, null);
     }
 }

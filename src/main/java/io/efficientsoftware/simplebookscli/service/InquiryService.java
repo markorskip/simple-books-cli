@@ -1,7 +1,6 @@
 package io.efficientsoftware.simplebookscli.service;
 
 import io.efficientsoftware.simplebookscli.model.MoneyEvent;
-import io.efficientsoftware.simplebookscli.model.TimeEvent;
 import io.efficientsoftware.simplebookscli.model.BusinessInfoEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,15 +14,7 @@ import java.util.stream.Collectors;
 public class InquiryService {
 
     @Autowired
-    private DataCache dataCache;
-
-    public Set<TimeEvent> getTimeEvents() {
-        return this.dataCache.getEvents().stream().filter(x->x instanceof TimeEvent).map(x-> (TimeEvent) x).collect(Collectors.toSet());
-    }
-
-    public Set<MoneyEvent> getMoneyEvents() {
-        return this.dataCache.getEvents().stream().filter(x->x instanceof MoneyEvent).map(x-> (MoneyEvent) x).collect(Collectors.toSet());
-    }
+    private InMemoryEventStore store;
 
     public void displaySummary() {
         System.out.println("**********************");
@@ -31,17 +22,17 @@ public class InquiryService {
         System.out.println();
 
         System.out.println("Time Records");
-        System.out.println("Total no: " + getTimeEvents().size());
-        System.out.println("Total no of hours worked: " + TimeRecordCalc.getTotalNoOfHoursWorked(this.getTimeEvents()));
-        System.out.println("No of hours worked this month: " + TimeRecordCalc.getHoursWorkedThisMonth(this.getTimeEvents()));
+        System.out.println("Total no: " + store.getTimeEvents().size());
+        System.out.println("Total no of hours worked: " + TimeRecordCalc.getTotalNoOfHoursWorked(store.getTimeEvents()));
+        System.out.println("No of hours worked this month: " + TimeRecordCalc.getHoursWorkedThisMonth(store.getTimeEvents()));
         System.out.println();
 
         System.out.println("Money Records");
-        System.out.println("Total no: " + getMoneyEvents().size());
+        System.out.println("Total no: " + store.getMoneyEvents().size());
         System.out.println();
 
         System.out.println("Mileage Records");
-       // System.out.println("Total no: " + mileageRecords.size());
+        System.out.println("Total no: " + store.getMileageEvents().size());
         System.out.println();
 
         System.out.print("Projects Summary");
@@ -51,12 +42,11 @@ public class InquiryService {
     }
 
     private Set<BusinessInfoEvent> getBusinessInfoEvents() {
-        return this.dataCache.getEvents().stream().filter(x->x instanceof BusinessInfoEvent).map(x -> (BusinessInfoEvent) x).collect(Collectors.toSet());
+        return store.getEvents().stream().filter(x->x instanceof BusinessInfoEvent).map(x -> (BusinessInfoEvent) x).collect(Collectors.toSet());
     }
 
-
     private String getBusinessName() {
-        Optional<BusinessInfoEvent> opt =  getBusinessInfoEvents().stream().sorted().findFirst();
+        Optional<BusinessInfoEvent> opt = getBusinessInfoEvents().stream().sorted().findFirst();
         if (opt.isPresent()) {
             return opt.get().getBusinessName();
         }
@@ -76,13 +66,13 @@ public class InquiryService {
     }
 
     private double getTotalHoursWorkedForProject(String project) {
-        return getTimeEvents().stream()
+        return store.getTimeEvents().stream()
                 .filter(x->x.getAccount().equals(project))
                 .mapToDouble(x->x.getHours()).sum();
     }
 
     private double getTotalRevenueForProject(String project) {
-        return this.getMoneyEvents().stream()
+        return store.getMoneyEvents().stream()
                 .filter(x->x.getTransactionType() == MoneyEvent.TRANSACTION_TYPE.REVENUE)
                 .filter(x->x.getAccountFrom().equals(project))
                 .mapToDouble(x->x.getAmount()).sum();
@@ -91,12 +81,17 @@ public class InquiryService {
     Set<String> getAllProjects() {
         Set<String> result = new HashSet<>();
         // Get every account time has worked on
-        result.addAll(getTimeEvents().stream().map(x->x.getAccount()).collect(Collectors.toSet()));
+        result.addAll(store.getTimeEvents().stream().map(x->x.getAccount()).collect(Collectors.toSet()));
         // Get every account that has brought in revenue
-        result.addAll(this.getMoneyEvents().stream()
+        result.addAll(store.getMoneyEvents().stream()
                 .filter(x->x.getTransactionType() == MoneyEvent.TRANSACTION_TYPE.REVENUE).map(x->x.getAccountFrom())
                 .collect(Collectors.toSet()));
         return result;
 
     }
+
+    public void displayTimeLogs() {
+        store.getTimeEvents().forEach(System.out::println);
+    }
+
 }

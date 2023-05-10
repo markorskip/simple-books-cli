@@ -15,7 +15,7 @@ public class BusinessInfoEvent extends SequenceEvent {
     }
 
     public BusinessInfoEvent(String businessName) {
-        super();
+        super(LocalDateTime.now());
         this.businessName = businessName;
         displayAdded();
     }

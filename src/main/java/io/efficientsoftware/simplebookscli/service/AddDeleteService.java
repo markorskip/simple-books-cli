@@ -1,29 +1,20 @@
 package io.efficientsoftware.simplebookscli.service;
 
-import io.efficientsoftware.simplebookscli.model.core.DateEvent;
 import io.efficientsoftware.simplebookscli.model.core.Event;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Service
-public class DataCache {
+public class AddDeleteService {
 
-    private Set<Event> dateEvents = new HashSet<>();
-
-    // Only services should be accessing the events
-    protected Set<Event> getEvents() {
-        return this.dateEvents;
-    }
-
-
+    @Autowired
+    InMemoryEventStore inMemoryEventStore;
 
     // adding any event goes through
     // anything can add an event
     public boolean add(Event event) {
         // Each event can only occur once in the
-        if (dateEvents.add(event)) {
+        if (inMemoryEventStore.add(event)) {
             // append to event log
 
             event.displayAdded();
@@ -35,7 +26,7 @@ public class DataCache {
     // deleting any event goes through here
     // anything can delete an event
     public boolean delete(Event event) {
-        if (dateEvents.remove(event)) {
+        if (inMemoryEventStore.remove(event)) {
             // remove from event log
             return true;
         }

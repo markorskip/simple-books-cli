@@ -1,6 +1,7 @@
 package io.efficientsoftware.simplebookscli.model.core;
 
 import io.efficientsoftware.simplebookscli.model.core.Event;
+import lombok.Builder;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

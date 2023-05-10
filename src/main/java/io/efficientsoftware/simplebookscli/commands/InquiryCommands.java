@@ -13,7 +13,7 @@ public class InquiryCommands {
 
     @ShellMethod
     public void viewTimeLogs() {
-        this.inquiryService.getTimeEvents().forEach(System.out::println);
+        this.inquiryService.displayTimeLogs();
     }
 
     @ShellMethod
