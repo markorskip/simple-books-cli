@@ -2,10 +2,12 @@ package io.efficientsoftware.simplebookscli.service;
 
 import io.efficientsoftware.simplebookscli.model.MoneyEvent;
 import io.efficientsoftware.simplebookscli.model.TimeEvent;
+import io.efficientsoftware.simplebookscli.model.BusinessInfoEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,7 +27,7 @@ public class InquiryService {
 
     public void displaySummary() {
         System.out.println("**********************");
-        //System.out.println(this.name);
+        System.out.println(getBusinessName());
         System.out.println();
 
         System.out.println("Time Records");
@@ -46,6 +48,19 @@ public class InquiryService {
         for (String project : getAllProjects()) {
             displayProjectSummary(project);
         }
+    }
+
+    private Set<BusinessInfoEvent> getBusinessInfoEvents() {
+        return this.dataCache.getEvents().stream().filter(x->x instanceof BusinessInfoEvent).map(x -> (BusinessInfoEvent) x).collect(Collectors.toSet());
+    }
+
+
+    private String getBusinessName() {
+        Optional<BusinessInfoEvent> opt =  getBusinessInfoEvents().stream().sorted().findFirst();
+        if (opt.isPresent()) {
+            return opt.get().getBusinessName();
+        }
+        return "Business";
     }
 
     void displayProjectSummary(String project) {

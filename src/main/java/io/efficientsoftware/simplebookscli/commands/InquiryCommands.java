@@ -11,8 +11,6 @@ public class InquiryCommands {
     @Autowired
     private InquiryService inquiryService;
 
-
-
     @ShellMethod
     public void viewTimeLogs() {
         this.inquiryService.getTimeEvents().forEach(System.out::println);

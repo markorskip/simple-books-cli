@@ -1,6 +1,6 @@
 package io.efficientsoftware.simplebookscli.commands;
 
-import io.efficientsoftware.simplebookscli.model.UpdateBusinessInfoEvent;
+import io.efficientsoftware.simplebookscli.model.BusinessInfoEvent;
 import io.efficientsoftware.simplebookscli.service.DataCache;
 import io.efficientsoftware.simplebookscli.model.MoneyEvent;
 import io.efficientsoftware.simplebookscli.model.TimeEvent;
@@ -19,7 +19,10 @@ public class AddEventCommands {
 
     @ShellMethod
     public void setBusinessName(String name) {
-        UpdateBusinessInfoEvent event = new UpdateBusinessInfoEvent(LocalDateTime.now(), name);
+        // because some information is generated when the shell command is ran, the actual command
+        // to create the event needs to be MORE verbose then the user's command.  So we can't store
+        // user commands
+        BusinessInfoEvent event = new BusinessInfoEvent(LocalDateTime.now(), name);
         dataCache.add(event);
     }
 
