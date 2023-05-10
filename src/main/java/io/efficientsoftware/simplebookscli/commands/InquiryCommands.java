@@ -1,6 +1,6 @@
 package io.efficientsoftware.simplebookscli.commands;
 
-import io.efficientsoftware.simplebookscli.DataCache;
+import io.efficientsoftware.simplebookscli.service.InquiryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -9,16 +9,18 @@ import org.springframework.shell.standard.ShellMethod;
 public class InquiryCommands {
 
     @Autowired
-    private DataCache dateCache;
+    private InquiryService inquiryService;
+
+
 
     @ShellMethod
     public void viewTimeLogs() {
-        this.dateCache.business.getTimeRecords().forEach(System.out::println);
+        this.inquiryService.getTimeEvents().forEach(System.out::println);
     }
 
     @ShellMethod
     public void view() {
-        this.dateCache.business.displaySummary();
+        this.inquiryService.displaySummary();
     }
 
     //@ShellMethod

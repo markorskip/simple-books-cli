@@ -1,12 +1,13 @@
 package io.efficientsoftware.simplebookscli.model;
 
 
+import io.efficientsoftware.simplebookscli.model.core.DateEvent;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @EqualsAndHashCode
 @Getter
-public class TimeEvent extends BaseEvent {
+public class TimeEvent extends DateEvent {
 
 	private String account;
 	private String description;

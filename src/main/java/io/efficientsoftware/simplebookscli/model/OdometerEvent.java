@@ -1,11 +1,12 @@
 package io.efficientsoftware.simplebookscli.model;
 
+import io.efficientsoftware.simplebookscli.model.core.DateEvent;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @EqualsAndHashCode
 @ToString
-public class OdometerEvent extends BaseEvent {
+public class OdometerEvent extends DateEvent {
 
     private String vehicleName;
     private double mileageReading;

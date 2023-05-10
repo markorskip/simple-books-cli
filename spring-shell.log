@@ -469,22 +469,22 @@
 1683509587310:log-time --date "1/1/2022" --account "Shotspotter" --description "Worked hard" --hoursToWorked "9"
 1683509613198:view-time-logs
 1683509769144:script
-1683509814671:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683509814671:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-dateEvent-log.txt"
 1683509818657:view-time-logs
 1683510377479:exit
 1683510390193:view
-1683510406625:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683510406625:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-dateEvent-log.txt"
 1683510410901:view
 1683510449826:view-time-logs
 1683510689523:exit
-1683510703326:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683510703326:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-dateEvent-log.txt"
 1683510713279:view
 1683510719224:view-time-logs
 1683510850433:exit
-1683510866222:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683510866222:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-dateEvent-log.txt"
 1683510876179:view-time-logs
 1683511300321:exit
-1683511313485:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683511313485:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-dateEvent-log.txt"
 1683511315479:view
 1683513091015:exit
 1683513432265:help
@@ -498,33 +498,42 @@
 1683513712230:exit
 1683513727515:help
 1683513728874:shell
-1683513734537:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683513734537:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-dateEvent-log.txt"
 1683513736768:view
 1683514396665:exit
-1683514454176:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683514454176:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-dateEvent-log.txt"
 1683514457371:view
-1683514502883:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683514502883:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-dateEvent-log.txt"
 1683514504551:view
-1683514513145:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683514513145:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-dateEvent-log.txt"
 1683514518192:view
 1683514527761:exit
-1683514583059:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683514583059:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-dateEvent-log.txt"
 1683514585231:view
 1683514642409:clear
 1683514643199:view
-1683568616076:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683568616076:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-dateEvent-log.txt"
 1683568618465:view
 1683569023235:exit
 1683569046511:help
 1683569055019:scipt --help
 1683569059959:script --help
 1683569348719:script --file "log.txt"
-1683595900685:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683595900685:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-dateEvent-log.txt"
 1683595948863:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/log_dir/master_log.txt"
 1683596030246:load
 1683597611694:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/log_dir/master_log.txt"
-1683673819480:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683673819480:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-dateEvent-log.txt"
 1683673843384:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/log_dir/master_log.txt"
-1683674089945:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-event-log.txt"
+1683674089945:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/Efficient-Software-LLC-dateEvent-log.txt"
 1683674099183:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/log_dir/master_log.txt"
 1683674454622:exit
+1683677009762:exit
+1683677039676:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/log_dir/master_log.txt"
+1683677044362:help
+1683677047203:vie
+1683677048500:view
+1683679978913:exit
+1683680137723:>exit
+1683680140586:exit
+1683680154683:help
