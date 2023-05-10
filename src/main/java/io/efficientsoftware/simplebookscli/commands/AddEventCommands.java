@@ -19,10 +19,7 @@ public class AddEventCommands {
 
     @ShellMethod
     public void setBusinessName(String name) {
-        // because some information is generated when the shell command is ran, the actual command
-        // to create the event needs to be MORE verbose then the user's command.  So we can't store
-        // user commands
-        BusinessInfoEvent event = new BusinessInfoEvent(LocalDateTime.now(), name);
+        BusinessInfoEvent event = new BusinessInfoEvent(name);
         dataCache.add(event);
     }
 

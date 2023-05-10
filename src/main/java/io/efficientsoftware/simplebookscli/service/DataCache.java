@@ -27,7 +27,6 @@ public class DataCache {
             // append to event log
 
             event.displayAdded();
-
             return true;
         }
         return false;

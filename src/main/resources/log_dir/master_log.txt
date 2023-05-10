@@ -1,4 +1,0 @@
-create-business --name "Efficient Software LLC"
-script "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/log_dir/money_log.txt"
-script "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/log_dir/auto_log.txt"
-script "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/log_dir/time_log.txt"

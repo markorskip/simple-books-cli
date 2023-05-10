@@ -537,3 +537,8 @@
 1683680137723:>exit
 1683680140586:exit
 1683680154683:help
+1683683612152:exit
+1683683746575:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/log_dir/master_log.txt"
+1683683760236:script --file "/Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/load_scripts/master_log.txt"
+1683683763012:view
+1683683782243:view-time-logs

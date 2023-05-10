@@ -1,6 +1,7 @@
-package io.efficientsoftware.simplebookscli.model;
+package io.efficientsoftware.simplebookscli.model.core;
 
-import io.efficientsoftware.simplebookscli.model.core.DateEvent;
+import io.efficientsoftware.simplebookscli.model.MileageEvent;
+import io.efficientsoftware.simplebookscli.model.MoneyEvent;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BaseRecordTest {
+public class DateEventTest {
 
     @Test
     public void testDateParsing() {
