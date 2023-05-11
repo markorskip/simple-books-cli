@@ -1,10 +1,13 @@
 package io.efficientsoftware.simplebookscli.model;
 
+import io.efficientsoftware.simplebookscli.model.core.Event;
 import io.efficientsoftware.simplebookscli.model.core.SequenceEvent;
+import lombok.Getter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
 
+@Getter
 public class BusinessInfoEvent extends SequenceEvent {
 
     private String businessName;
@@ -34,7 +37,8 @@ public class BusinessInfoEvent extends SequenceEvent {
     }
 
     @Override
-    public String toLine() {
+    public String toCSV() {
         return null;
     }
+
 }

@@ -1,6 +1,7 @@
 package io.efficientsoftware.simplebookscli.service;
 
 
+import io.efficientsoftware.simplebookscli.model.MileageEvent;
 import io.efficientsoftware.simplebookscli.model.core.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,8 +13,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Component
 public class PersistenceService {
@@ -28,7 +27,6 @@ public class PersistenceService {
 
     public boolean append(Event event) {
         try{
-
             //Specify the file name and path here
             File file = new File(filePath);
 
@@ -43,7 +41,8 @@ public class PersistenceService {
             FileWriter fw = new FileWriter(file,true);
             //BufferedWriter writer give better performance
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(event.toLine());
+            bw.newLine();
+            bw.append(event.toCSV());
             //Closing BufferedWriter Stream
             bw.close();
 
@@ -79,11 +78,18 @@ public class PersistenceService {
             events.add(toEvent(line));
         }
         inMemoryEventStore.setEvents(events);
-        return null;
-
+        return events;
     }
 
     private Event toEvent(String line) {
-        return Event.fromLine(line);
+        String[] csv = line.split(",");
+        Event.EVENT_TYPE eventType = Event.EVENT_TYPE.valueOf(csv[0]);
+        switch (eventType) {
+            case MILEAGE -> {
+                return new MileageEvent(csv);
+            }
+        }
+        System.out.println("Unable to convert line into an event: " + line);
+        throw new IllegalArgumentException("Unable to convert line into an event: " + line);
     }
 }

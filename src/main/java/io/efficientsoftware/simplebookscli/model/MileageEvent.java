@@ -1,12 +1,12 @@
 package io.efficientsoftware.simplebookscli.model;
 
 import io.efficientsoftware.simplebookscli.model.core.DateEvent;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
 
 
 @ToString
-@EqualsAndHashCode
+@Getter
 public class MileageEvent extends DateEvent {
 
     private String vehicleName;
@@ -15,15 +15,20 @@ public class MileageEvent extends DateEvent {
 
     public MileageEvent(String date, String vehicleName, String milesDriven, String description) {
         super(date);
-        this.eventType = EVENT_TYPE.MILEAEGE;
         this.vehicleName = vehicleName;
         this.milesDriven = parseDouble(milesDriven);
         this.description = description;
+        this.eventType = EVENT_TYPE.MILEAGE;
+    }
+
+    public MileageEvent(String[] csv) {
+        this(csv[1],csv[2],csv[3],csv[4]);
     }
 
     @Override
-    public String toLine() {
-        return EVENT_TYPE.MILEAEGE.toString() + "," + date + "," +
+    public String toCSV() {
+        return EVENT_TYPE.MILEAGE.toString() + "," + dateToString(date) + "," +
                 vehicleName + "," + milesDriven.toString() + "," + description;
     }
+
 }

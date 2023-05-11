@@ -2,10 +2,11 @@ package io.efficientsoftware.simplebookscli.model;
 
 
 import io.efficientsoftware.simplebookscli.model.core.DateEvent;
+import io.efficientsoftware.simplebookscli.model.core.Event;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
-@EqualsAndHashCode
 @Getter
 public class TimeEvent extends DateEvent {
 
@@ -48,7 +49,7 @@ public class TimeEvent extends DateEvent {
 	}
 
 	@Override
-	public String toLine() {
+	public String toCSV() {
 		return null;
 	}
 }

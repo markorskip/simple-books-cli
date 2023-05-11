@@ -2,12 +2,12 @@ package io.efficientsoftware.simplebookscli.model;
 
 import io.efficientsoftware.simplebookscli.model.core.DateEvent;
 
+import io.efficientsoftware.simplebookscli.model.core.Event;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 @ToString
-@EqualsAndHashCode(callSuper = false)
 @Getter
 public class MoneyEvent extends DateEvent {
 
@@ -19,7 +19,7 @@ public class MoneyEvent extends DateEvent {
     private String category;
 
     @Override
-    public String toLine() {
+    public String toCSV() {
         return null;
     }
 

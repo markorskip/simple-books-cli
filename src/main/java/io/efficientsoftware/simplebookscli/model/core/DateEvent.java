@@ -1,10 +1,8 @@
 package io.efficientsoftware.simplebookscli.model.core;
 
-import io.efficientsoftware.simplebookscli.model.core.Event;
-import lombok.Builder;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public abstract class DateEvent extends Event {
 
@@ -16,10 +14,16 @@ public abstract class DateEvent extends Event {
         this.date = parseDate(date);
     }
 
+    private static final String datePattern = "M/d/y";
     public static LocalDate parseDate(String date) {
         DateTimeFormatter formatter =
-                 DateTimeFormatter.ofPattern("M/d/y");
+                 DateTimeFormatter.ofPattern(datePattern);
         return LocalDate.parse(date,formatter);
+    }
+
+    public static String dateToString(LocalDate localDate) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(datePattern, Locale.US);
+        return localDate.format(dtf);
     }
 
     public Double parseDouble(String number) {

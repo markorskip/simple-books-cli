@@ -616,3 +616,20 @@
 1683775955987:load
 1683775960678:load /Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/event_store.txt
 1683775962973:view
+1683815687373:exit
+1683815818537:view
+1683815822955:load /Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/event_store.txt
+1683815840232:view
+1683815944192:log-mileage --date 5/8/2023 Chevy -5/8/2023 --vehicleName Chevy --milesDriven 25 --description "Auto shop for business vehicle"
+1683815947477:view
+1683815950636:exit
+1683815966440:log-mileage --date 5/8/2023 Chevy -5/8/2023 --vehicleName Chevy --milesDriven 25 --description "Auto shop for business vehicle"
+1683816048751:load /Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/event_store.txt
+1683816050219:view
+1683816057905:log-mileage --date 5/8/2023 Chevy -5/8/2023 --vehicleName Chevy --milesDriven 25 --description "Auto shop for another record"
+1683816118554:exit
+1683816138962:load /Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/event_store.txt
+1683816144897:view
+1683816258465:log-mileage --date 5/5/2025 --description "trip to store" --milesDriven 10 --vehicleName "Chevy"
+1683816261360:view
+1683816264431:view-mileage
