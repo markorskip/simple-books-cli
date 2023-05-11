@@ -46,4 +46,9 @@ public class TimeEvent extends DateEvent {
 		sb.append(" Description: ").append(description).append('\n');
 		return sb.toString();
 	}
+
+	@Override
+	public String toLine() {
+		return null;
+	}
 }

@@ -582,3 +582,37 @@
 1683692012427:exit
 1683692030735:view
 1683692031716:help
+1683773871692:load
+1683773933767:stacktrace
+1683774102738:exit
+1683774120874:help
+1683774122202:load
+1683774150938:stacktrace
+1683774179154:exit
+1683774194788:load
+1683774212763:stacktrace
+1683774470598:exit
+1683774576986:load
+1683774604081:help
+1683775438402:exit
+1683775545134:load /Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/event_store.txt
+1683775551456:view
+1683775560510:help
+1683775653704:exit
+1683775693829:load /Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/event_store.txt
+1683775713734:log-mileage 1/1/2022 chevy 100 "to the store"
+1683775725159:view
+1683775729374:exit
+1683775743372:view
+1683775746310:log-mileage 1/1/2022 chevy 100 "to the store"
+1683775753186:load /Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/event_store.txt
+1683775809700:exit
+1683775834913:view
+1683775838858:load /Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/event_store.txt
+1683775843134:view
+1683775870285:log-mileage 1/1/2022 chevy 100 "costco business"
+1683775882069:load /Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/event_store.txt
+1683775897438:stacktrace
+1683775955987:load
+1683775960678:load /Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/event_store.txt
+1683775962973:view

@@ -53,4 +53,8 @@ public class InMemoryEventStore {
     protected boolean remove(Event event) {
         return this.events.remove(event);
     }
+
+    protected void setEvents(Set<Event> events) {
+        this.events = events;
+    }
 }

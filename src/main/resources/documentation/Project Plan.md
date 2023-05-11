@@ -2,7 +2,7 @@
 - Definite the deliverables - DONE 
 - Design the architecture - DONE
 - Buy the domain simplebookscli.com - DONE
-- Scaffold website - tutorials pages for each report (4 reports)
+- Scaffold website - tutorials pages for each report (4 reports) - DONE
 - Build the app 
 - Populate the static website (need the app done to take screenshots)
 - Deploy the website - firebase

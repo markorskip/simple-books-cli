@@ -32,4 +32,9 @@ public class BusinessInfoEvent extends SequenceEvent {
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public String toLine() {
+        return null;
+    }
 }

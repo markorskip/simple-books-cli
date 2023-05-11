@@ -11,7 +11,7 @@ public class AddDeleteService {
     InMemoryEventStore inMemoryEventStore;
 
     @Autowired
-    Syncronizer syncronizer;
+    PersistenceService persistenceService;
 
     // adding any event goes through
     // anything can add an event
@@ -19,7 +19,7 @@ public class AddDeleteService {
         // Each event can only occur once in the
         if (inMemoryEventStore.add(event)) {
             // append to event log
-            syncronizer.append(event);
+            persistenceService.append(event);
             event.displayAdded();
             return true;
         }
@@ -31,7 +31,7 @@ public class AddDeleteService {
     public boolean delete(Event event) {
         if (inMemoryEventStore.remove(event)) {
             // remove from event log
-            syncronizer.delete(event);
+            persistenceService.delete(event);
             return true;
         }
         return false;

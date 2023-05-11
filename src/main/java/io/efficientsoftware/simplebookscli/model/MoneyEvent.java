@@ -18,6 +18,11 @@ public class MoneyEvent extends DateEvent {
     private TRANSACTION_TYPE transactionType;
     private String category;
 
+    @Override
+    public String toLine() {
+        return null;
+    }
+
     public enum TRANSACTION_TYPE { REVENUE, DIRECT_EXPENSE, AUTO };
     /**
      * @param date

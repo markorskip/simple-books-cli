@@ -1,6 +1,7 @@
 package io.efficientsoftware.simplebookscli.commands;
 
 import io.efficientsoftware.simplebookscli.model.BusinessInfoEvent;
+import io.efficientsoftware.simplebookscli.model.MileageEvent;
 import io.efficientsoftware.simplebookscli.service.AddDeleteService;
 import io.efficientsoftware.simplebookscli.model.MoneyEvent;
 import io.efficientsoftware.simplebookscli.model.TimeEvent;
@@ -48,5 +49,15 @@ public class AddEventCommands {
                 description, category);
         addDeleteService.add(moneyRecord);
     }
+
+    @ShellMethod(key = {"log-mileage", "lm" }, value = "Log a Mileage")
+    public void logDirectExpense(String date, String vehicleName, String milesDriven,
+                                 @ShellOption(defaultValue = ShellOption.NULL) String description
+                                 ) {
+        MileageEvent mileageEvent = new MileageEvent(date, vehicleName,
+                milesDriven, description);
+        addDeleteService.add(mileageEvent);
+    }
+
 
 }

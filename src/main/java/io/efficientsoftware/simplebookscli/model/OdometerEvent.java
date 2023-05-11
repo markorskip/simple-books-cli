@@ -23,4 +23,9 @@ public class OdometerEvent extends DateEvent {
         this.mileageReading = parseDouble(mileageReading);
         this.vehicleName = vehicleName;
     }
+
+    @Override
+    public String toLine() {
+        return null;
+    }
 }
