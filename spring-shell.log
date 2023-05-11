@@ -633,3 +633,9 @@
 1683816258465:log-mileage --date 5/5/2025 --description "trip to store" --milesDriven 10 --vehicleName "Chevy"
 1683816261360:view
 1683816264431:view-mileage
+1683816287750:exit
+1683816344471:help
+1683816370642:load /Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/event_store.txt
+1683816415795:log-mileage 5/5/2023 "test" 50.5 Chevy
+1683816430304:log-mileage help
+1683816435967:log-mileage --help

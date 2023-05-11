@@ -2,3 +2,4 @@ MILEAGE,1/1/2022,chevy,100.0,costco business
 MILEAGE,5/8/2023,Chevy,25.0,Auto shop for business vehicle
 MILEAGE,5/8/2023,Chevy,25.0,Auto shop for another record
 MILEAGE,5/5/2025,Chevy,10.0,trip to store
+MILEAGE,5/5/2023,test,50.5,Chevy
