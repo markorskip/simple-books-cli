@@ -1,7 +1,7 @@
 package io.efficientsoftware.simplebookscli.model.core;
 
 import io.efficientsoftware.simplebookscli.model.MileageEvent;
-import io.efficientsoftware.simplebookscli.model.MoneyEvent;
+import io.efficientsoftware.simplebookscli.model.money.MoneyEvent;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

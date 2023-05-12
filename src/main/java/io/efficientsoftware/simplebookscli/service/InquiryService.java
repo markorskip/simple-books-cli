@@ -1,6 +1,7 @@
 package io.efficientsoftware.simplebookscli.service;
 
-import io.efficientsoftware.simplebookscli.model.MoneyEvent;
+import io.efficientsoftware.simplebookscli.calc.TimeRecordCalc;
+import io.efficientsoftware.simplebookscli.model.money.MoneyEvent;
 import io.efficientsoftware.simplebookscli.model.BusinessInfoEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -97,12 +98,10 @@ public class InquiryService {
     }
 
     public void displayExpenseLogs() {
-        store.getMoneyEvents().stream().filter(x->x.getTransactionType() == MoneyEvent.TRANSACTION_TYPE.DIRECT_EXPENSE)
-                .forEach(System.out::println);
+        store.getDirectExpenseEvents().forEach(System.out::println);
     }
     public void displayRevenueLogs() {
-        store.getMoneyEvents().stream().filter(x->x.getTransactionType() == MoneyEvent.TRANSACTION_TYPE.REVENUE)
-                .forEach(System.out::println);
+        store.getRevenueEvents().forEach(System.out::println);
     }
 
     public void displayMileageLogs() {

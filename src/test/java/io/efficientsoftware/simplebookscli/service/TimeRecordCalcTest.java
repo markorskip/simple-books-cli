@@ -1,7 +1,7 @@
 package io.efficientsoftware.simplebookscli.service;
 
+import io.efficientsoftware.simplebookscli.calc.TimeRecordCalc;
 import io.efficientsoftware.simplebookscli.model.TimeEvent;
-import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Set;

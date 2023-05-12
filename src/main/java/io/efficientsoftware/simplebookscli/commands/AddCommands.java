@@ -3,7 +3,7 @@ package io.efficientsoftware.simplebookscli.commands;
 import io.efficientsoftware.simplebookscli.model.BusinessInfoEvent;
 import io.efficientsoftware.simplebookscli.model.MileageEvent;
 import io.efficientsoftware.simplebookscli.service.AddDeleteService;
-import io.efficientsoftware.simplebookscli.model.MoneyEvent;
+import io.efficientsoftware.simplebookscli.model.money.MoneyEvent;
 import io.efficientsoftware.simplebookscli.model.TimeEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;

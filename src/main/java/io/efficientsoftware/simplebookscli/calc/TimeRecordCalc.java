@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli.service;
+package io.efficientsoftware.simplebookscli.calc;
 
 import io.efficientsoftware.simplebookscli.model.TimeEvent;
 

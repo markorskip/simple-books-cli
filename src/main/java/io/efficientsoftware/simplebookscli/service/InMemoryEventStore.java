@@ -2,9 +2,11 @@ package io.efficientsoftware.simplebookscli.service;
 
 import io.efficientsoftware.simplebookscli.model.BusinessInfoEvent;
 import io.efficientsoftware.simplebookscli.model.MileageEvent;
-import io.efficientsoftware.simplebookscli.model.MoneyEvent;
+import io.efficientsoftware.simplebookscli.model.money.DirectExpenseEvent;
+import io.efficientsoftware.simplebookscli.model.money.MoneyEvent;
 import io.efficientsoftware.simplebookscli.model.TimeEvent;
 import io.efficientsoftware.simplebookscli.model.core.Event;
+import io.efficientsoftware.simplebookscli.model.money.RevenueEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -33,6 +35,18 @@ public class InMemoryEventStore {
                 .map(x-> (MoneyEvent) x).collect(Collectors.toSet());
     }
 
+    public Iterable<Object> getDirectExpenseEvents() {
+        return this.events.stream()
+                .filter(x -> x instanceof DirectExpenseEvent)
+                .map(x-> (DirectExpenseEvent) x).collect(Collectors.toSet());
+    }
+
+    public Iterable<Object> getRevenueEvents() {
+        return this.events.stream()
+                .filter(x -> x instanceof RevenueEvent)
+                .map(x-> (RevenueEvent) x).collect(Collectors.toSet());
+    }
+
     protected Set<MileageEvent> getMileageEvents() {
         return this.events.stream()
                 .filter(x -> x instanceof MileageEvent)
@@ -57,4 +71,6 @@ public class InMemoryEventStore {
     protected void setEvents(Set<Event> events) {
         this.events = events;
     }
+
+
 }
