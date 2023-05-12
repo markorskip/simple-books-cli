@@ -11,7 +11,7 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
 @ShellComponent
-public class AddEventCommands {
+public class AddCommands {
 
     @Autowired
     private AddDeleteService addDeleteService;
