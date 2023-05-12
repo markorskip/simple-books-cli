@@ -10,12 +10,10 @@
 - Set up actual version and payment acceptance
 
 
-## Final Deliverables
+## Final Deliverables v1
 Website
     -Splash page
     -Tutorials - HOW TO
-        -Create helper rules
-        -Auto report - business percentage, show diff between standard mileage rate and actual expense method
         -Expense report - paidTo, category, taxCategory - all three have the same total expenses
         -Revenue report - Show revenue be paidFrom, account,
         -Create an invoice from time worked report (copy and paste into pages)
@@ -24,15 +22,22 @@ Website
 Working application
 -Log time, money (direct expense, revenue, auto), mileage
 -Persist locally to an event_store, append and delete
--Generate reports for auto, expenses, revenue, profitability reports
+-Generate reports for expenses, revenue, profitability reports
 -View logs for a date range for auto, expenses, revenue, and timeworked
--Add helper rules that auto-set category and tax category
 
-## v2 - 2024
-- Automatic PDF Invoice Generation
-- Additional tutorials
+
+## v2
+-Auto report - business percentage, show diff between standard mileage rate and actual expense method
+-Add helper rules that auto-set category and tax category
+-Create helper rules
+
+## v3
 - Bulk imports - csv and scripts        
 - Home office report
+
+# v4
+- Automatic PDF Invoice Generation
+- Additional tutorials
 
 ## Possible features / spin offs?
 - Manage Personal Expenses? Co-mingle? Seperate version?
@@ -89,6 +94,8 @@ Helper rules do two things:
 - Develop way to delete from local event store
 - Decide conflict odomoter: two readings same day the app picks the higher for end of year reading and lower for start of year reading
 - Decide conflicts for set properties - have the app create a sequence event when the command runs
+
+
 
 
 ## v2 TODO

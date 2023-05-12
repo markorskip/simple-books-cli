@@ -9,9 +9,12 @@ import lombok.ToString;
 @Getter
 public class MileageEvent extends DateEvent {
 
+    public enum MileageType { BUSINESS, PERSONAL, CHARITABLE }
+
     private String vehicleName;
     private Double milesDriven;
     private String description;
+    private MileageType mileageType;
 
     public MileageEvent(String date, String vehicleName, String milesDriven, String description) {
         super(date);
@@ -19,6 +22,8 @@ public class MileageEvent extends DateEvent {
         this.milesDriven = parseDouble(milesDriven);
         this.description = description;
         this.eventType = EVENT_TYPE.MILEAGE;
+        this.mileageType= MileageType.BUSINESS;
+        // TODO create constructor later
     }
 
     public MileageEvent(String[] csv) {

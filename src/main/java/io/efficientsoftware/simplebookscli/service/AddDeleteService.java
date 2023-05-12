@@ -4,6 +4,13 @@ import io.efficientsoftware.simplebookscli.model.core.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Ensures anything added in memory is also added to the event store.
+ *
+ * Ensures anything delete in memory is also deleted from the event store.
+ *
+ * TOOD write unit tests to prove this
+ */
 @Service
 public class AddDeleteService {
 
@@ -19,8 +26,13 @@ public class AddDeleteService {
         // Each event can only occur once in the
         if (inMemoryEventStore.add(event)) {
             // append to event log
-            persistenceService.append(event);
-            event.displayAdded();
+            try {
+                persistenceService.append(event);
+                event.displayAdded();
+            } catch (Exception e) {
+                System.out.println("Failed to append. Rolling back");
+                inMemoryEventStore.remove(event);
+            }
             return true;
         }
         return false;
@@ -31,7 +43,13 @@ public class AddDeleteService {
     public boolean delete(Event event) {
         if (inMemoryEventStore.remove(event)) {
             // remove from event log
-            persistenceService.delete(event);
+            try {
+                persistenceService.delete(event);
+            } catch (Exception e) {
+                System.out.println("Failed to delete: " + event);
+                inMemoryEventStore.add(event);
+            }
+
             return true;
         }
         return false;

@@ -56,9 +56,10 @@ public class PersistenceService {
         return false;
     }
 
-    public boolean delete(Event event) {
-        // deletes envent from the event log
-        return true;
+    public boolean delete(Event event) throws Exception {
+        // deletes event from the event log
+        throw new Exception("Not yet implemented");
+        //return true;
     }
 
     /**

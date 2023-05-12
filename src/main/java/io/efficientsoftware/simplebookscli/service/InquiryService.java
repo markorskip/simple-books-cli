@@ -48,7 +48,9 @@ public class InquiryService {
     private String getBusinessName() {
         Optional<BusinessInfoEvent> opt = getBusinessInfoEvents().stream().sorted().findFirst();
         if (opt.isPresent()) {
-            return opt.get().getBusinessName();
+            if (opt.get().getBusinessName() != null || opt.get().getBusinessName() != "") {
+                return opt.get().getBusinessName();
+            }
         }
         return "Business";
     }
@@ -94,4 +96,16 @@ public class InquiryService {
         store.getTimeEvents().forEach(System.out::println);
     }
 
+    public void displayExpenseLogs() {
+        store.getMoneyEvents().stream().filter(x->x.getTransactionType() == MoneyEvent.TRANSACTION_TYPE.DIRECT_EXPENSE)
+                .forEach(System.out::println);
+    }
+    public void displayRevenueLogs() {
+        store.getMoneyEvents().stream().filter(x->x.getTransactionType() == MoneyEvent.TRANSACTION_TYPE.REVENUE)
+                .forEach(System.out::println);
+    }
+
+    public void displayMileageLogs() {
+        store.getMileageEvents().stream().forEach(System.out::println);
+    }
 }
