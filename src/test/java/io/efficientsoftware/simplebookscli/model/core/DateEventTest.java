@@ -1,6 +1,7 @@
 package io.efficientsoftware.simplebookscli.model.core;
 
 import io.efficientsoftware.simplebookscli.model.MileageEvent;
+import io.efficientsoftware.simplebookscli.model.money.DirectExpenseEvent;
 import io.efficientsoftware.simplebookscli.model.money.MoneyEvent;
 import org.junit.jupiter.api.Test;
 
@@ -39,11 +40,10 @@ public class DateEventTest {
     }
 
     MoneyEvent getMoneyEvent() {
-        return new MoneyEvent(getTestDate(),
+        return new DirectExpenseEvent(getTestDate(),
                 "50",
                 "Checking",
-                "Spectrum",
-                MoneyEvent.TRANSACTION_TYPE.DIRECT_EXPENSE.toString());
+                "Spectrum","","");
     }
 
     //@Test

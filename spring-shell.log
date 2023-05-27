@@ -639,3 +639,10 @@
 1683816415795:log-mileage 5/5/2023 "test" 50.5 Chevy
 1683816430304:log-mileage help
 1683816435967:log-mileage --help
+1684159381215:load /Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/event_store.txt
+1684159384183:view
+1684161189838:log-mileage --date 5/14/2023 --milesDriven 54 --description "pickup up supplies" --vehicleName "Chevy"
+1684161193778:view
+1684161198258:view-mileage-logs
+1684161219314:log-expense
+1685153047893:log-mileage --date 5/14/2023 --milesDriven 54 --description "pickup up supplies" --vehicleName "Chevy"

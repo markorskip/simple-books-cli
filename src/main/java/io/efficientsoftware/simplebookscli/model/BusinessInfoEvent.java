@@ -7,7 +7,7 @@ import lombok.ToString;
 
 import java.time.LocalDateTime;
 
-@Getter
+@Getter // TODO rethink this - how can we use it to store other data
 public class BusinessInfoEvent extends SequenceEvent {
 
     private String businessName;

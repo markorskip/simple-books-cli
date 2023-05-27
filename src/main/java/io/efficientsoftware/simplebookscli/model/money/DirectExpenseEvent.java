@@ -2,7 +2,11 @@ package io.efficientsoftware.simplebookscli.model.money;
 
 public class DirectExpenseEvent extends MoneyEvent {
 
-    public DirectExpenseEvent(String date, String amount, String accountFrom, String accountTo, String type) {
-        super(date, amount, accountFrom, accountTo, type);
+    private String expenseCategory;
+
+    public DirectExpenseEvent(String date, String amount, String accountFrom, String accountTo, String transactionDescription, String expenseCategory) {
+        super(date, amount, accountFrom, accountTo, transactionDescription);
+        this.expenseCategory = expenseCategory;
+        this.transactionType = TRANSACTION_TYPE.DIRECT_EXPENSE;
     }
 }

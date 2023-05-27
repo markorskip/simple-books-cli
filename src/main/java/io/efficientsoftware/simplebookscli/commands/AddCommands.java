@@ -2,6 +2,8 @@ package io.efficientsoftware.simplebookscli.commands;
 
 import io.efficientsoftware.simplebookscli.model.BusinessInfoEvent;
 import io.efficientsoftware.simplebookscli.model.MileageEvent;
+import io.efficientsoftware.simplebookscli.model.money.DirectExpenseEvent;
+import io.efficientsoftware.simplebookscli.model.money.RevenueEvent;
 import io.efficientsoftware.simplebookscli.service.AddDeleteService;
 import io.efficientsoftware.simplebookscli.model.money.MoneyEvent;
 import io.efficientsoftware.simplebookscli.model.TimeEvent;
@@ -33,9 +35,9 @@ public class AddCommands {
     @ShellMethod(key = {"log-revenue","lr"}, value = "Log revenue.")
     public void logRevenue(String date, String amount, String accountFrom, String accountTo,
                            @ShellOption(defaultValue = ShellOption.NULL) String description,
-                           @ShellOption(defaultValue = ShellOption.NULL) String category) {
+                           @ShellOption(defaultValue = ShellOption.NULL) String revenueSource) {
         MoneyEvent moneyRecord =
-                new MoneyEvent(date, amount, accountFrom, accountTo, MoneyEvent.TRANSACTION_TYPE.REVENUE.toString(), description, category);
+                new RevenueEvent(date, amount, accountFrom, accountTo, description, revenueSource);
         addDeleteService.add(moneyRecord);
     }
 
@@ -43,9 +45,8 @@ public class AddCommands {
     public void logDirectExpense(String date, String amount, String accountFrom, String accountTo,
                                  @ShellOption(defaultValue = ShellOption.NULL) String description,
                                  @ShellOption(defaultValue = ShellOption.NULL) String category) {
-        MoneyEvent moneyRecord = new MoneyEvent(date, amount,
+        MoneyEvent moneyRecord = new DirectExpenseEvent(date, amount,
                 accountFrom, accountTo,
-                MoneyEvent.TRANSACTION_TYPE.DIRECT_EXPENSE.toString(),
                 description, category);
         addDeleteService.add(moneyRecord);
     }
@@ -58,6 +59,4 @@ public class AddCommands {
                 milesDriven, description);
         addDeleteService.add(mileageEvent);
     }
-
-
 }
