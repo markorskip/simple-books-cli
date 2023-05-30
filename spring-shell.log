@@ -646,3 +646,8 @@
 1684161198258:view-mileage-logs
 1684161219314:log-expense
 1685153047893:log-mileage --date 5/14/2023 --milesDriven 54 --description "pickup up supplies" --vehicleName "Chevy"
+1685477171090:help
+1685477210897:load /Users/marksorenson/repos/es/products/simple-books/simple-books-cli/src/main/resources/event_store.txt
+1685477286650:stacktrace
+1685477327556:whoami
+1685477338467:exit

@@ -20,8 +20,8 @@ public class InitCommands {
     @Autowired
     private PersistenceService persistenceService;
 
-    @Autowired
-    private InquiryService inquiryService;
+//    @Autowired
+//    private InquiryService inquiryService;
 
     @ShellMethod(value = "Load Your SimpleBooksCLI Database")
     public void load(String path) throws IOException, URISyntaxException {

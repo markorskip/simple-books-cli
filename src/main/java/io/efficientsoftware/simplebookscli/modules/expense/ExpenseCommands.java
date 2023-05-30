@@ -15,7 +15,6 @@ public class ExpenseCommands {
     @Autowired
     ExpenseService expenseService;
 
-
     @ShellMethod(key = {"log-expense", "le" }, value = "Log a direct expense.")
     public void logDirectExpense(String date, String amount, String accountFrom, String accountTo,
                                  @ShellOption(defaultValue = ShellOption.NULL) String description,

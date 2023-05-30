@@ -2,9 +2,11 @@ package io.efficientsoftware.simplebookscli.modules.expense;
 
 import io.efficientsoftware.simplebookscli.model.MoneyEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class ExpenseService {
 
     @Autowired
