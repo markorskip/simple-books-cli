@@ -1,7 +1,7 @@
 package io.efficientsoftware.simplebookscli.service;
 
-import io.efficientsoftware.simplebookscli.calc.TimeRecordCalc;
-import io.efficientsoftware.simplebookscli.model.TimeEvent;
+import io.efficientsoftware.simplebookscli.modules.time.TimeService;
+import io.efficientsoftware.simplebookscli.modules.time.TimeEvent;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,13 +24,13 @@ public class TimeRecordCalcTest {
         testSet.add(new TimeEvent(DATE, ACCOUNT, DESC, "4.5"));
         testSet.add(new TimeEvent(DATE, ACCOUNT, DESC, "3"));
 
-        double result = TimeRecordCalc.getTotalNoOfHoursWorked(testSet);
+        double result = TimeService.getTotalNoOfHoursWorked(testSet);
         assertEquals(result, 16.0);
 
         // Duplicate records won't change the total
         testSet.add(new TimeEvent(DATE, ACCOUNT, DESC, "3.5"));
         testSet.add(new TimeEvent(DATE, ACCOUNT, DESC, "3.5"));
-        result = TimeRecordCalc.getTotalNoOfHoursWorked(testSet);
+        result = TimeService.getTotalNoOfHoursWorked(testSet);
         assertEquals(result, 16.0);
     }
 }

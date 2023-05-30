@@ -1,9 +1,6 @@
 package io.efficientsoftware.simplebookscli.model;
 
-import io.efficientsoftware.simplebookscli.model.core.Event;
-import io.efficientsoftware.simplebookscli.model.core.SequenceEvent;
 import lombok.Getter;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
 
