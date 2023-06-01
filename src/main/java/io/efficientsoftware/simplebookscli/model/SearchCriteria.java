@@ -4,6 +4,12 @@ import java.time.LocalDate;
 
 public class SearchCriteria {
 
+    public static SearchCriteria defaults() {
+        SearchCriteria searchCriteria = new SearchCriteria();
+        searchCriteria.sortOrder = SORT_ORDER.OLDEST_FIRST;
+        return searchCriteria;
+    }
+
     public String printTitle() {
         final StringBuilder sb = new StringBuilder("SearchCriteria: ");
         if (sortOrder != null) {

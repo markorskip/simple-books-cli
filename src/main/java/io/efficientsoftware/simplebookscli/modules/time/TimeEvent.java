@@ -1,7 +1,7 @@
 package io.efficientsoftware.simplebookscli.modules.time;
 
 
-import io.efficientsoftware.simplebookscli.model.DateEvent;
+import io.efficientsoftware.simplebookscli.model.event.DateEvent;
 import lombok.Getter;
 
 @Getter

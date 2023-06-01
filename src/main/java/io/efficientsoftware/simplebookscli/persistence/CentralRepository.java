@@ -1,11 +1,9 @@
 package io.efficientsoftware.simplebookscli.persistence;
 
-import io.efficientsoftware.simplebookscli.model.Event;
+import io.efficientsoftware.simplebookscli.model.event.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Set;
 
 /**
@@ -29,61 +27,35 @@ public class CentralRepository {
     /**
      * @return All events.  Extenders of this class should override and filter.
      */
-    protected Set<Event> readEvents() {
+    public Set<Event> readEvents() {
         return this.inMemoryEventStore.getEvents();
     }
 
-    protected boolean createOrUpdate(Event event) {
-        // Each event can only occur once in the data
-        if (inMemoryEventStore.add(event)) { // uses equals to find if the event exists
-            // append to event log
-            try {
-                persistenceService.append(event);
-                event.displayAdded();
-            } catch (Exception e) {
-                System.out.println("Failed to append. Rolling back");
-                inMemoryEventStore.remove(event);
-            }
-            return true;
-        } else { // event already exists
-            return update(event);
+    public void add(Event event) {
+        if (inMemoryEventStore.add(event)) {
+            persistenceService.append(event,filePath);
+            event.displayAdded();
         }
     }
 
-    private boolean update(Event event) {
-        try {
-            persistenceService.delete(event);
-            persistenceService.append(event);
-            inMemoryEventStore.remove(event);
-            inMemoryEventStore.add(event);
-            return true;
-        } catch (Exception e) {
-            System.out.println("Update Failed");
-            return false;
+    public void update(Event oldEvent, Event newEvent) {
+        if (inMemoryEventStore.remove(oldEvent) || inMemoryEventStore.add(newEvent)) {
+            persistenceService.rewrite(inMemoryEventStore.getEvents(), this.filePath);
         }
     }
 
-    protected boolean delete(Event event) {
-        if (inMemoryEventStore.remove(event)) {
-            // remove from event log
-            try {
-                persistenceService.delete(event);
-            } catch (Exception e) {
-                System.out.println("Failed to delete: " + event);
-                inMemoryEventStore.add(event);
-            }
-            return true;
-        }
-        return false;
+    public void delete(Event event) {
+       if (inMemoryEventStore.remove(event)) {
+           //rewrite the whole file
+           persistenceService.rewrite(inMemoryEventStore.getEvents(), this.filePath);
+       }
     }
+
+    private String filePath;
 
     protected void load(String path) {
-        Set<Event> events = null;
-        try {
-            events = this.persistenceService.load(path);
-            this.inMemoryEventStore.setEvents(events);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        this.filePath = path;
+        Set<Event> events = this.persistenceService.load(path);
+        this.inMemoryEventStore.setEvents(events);
     }
 }

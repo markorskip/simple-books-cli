@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli.modules;
+package io.efficientsoftware.simplebookscli.modules.deletesoon;
 
 import org.springframework.shell.standard.ShellComponent;
 

@@ -1,7 +1,7 @@
 package io.efficientsoftware.simplebookscli.persistence;
 
-import io.efficientsoftware.simplebookscli.model.KeyValueEvent;
-import io.efficientsoftware.simplebookscli.model.Event;
+import io.efficientsoftware.simplebookscli.model.event.KeyValueEvent;
+import io.efficientsoftware.simplebookscli.model.event.Event;
 import io.efficientsoftware.simplebookscli.modules.mileage.MileageEvent;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;

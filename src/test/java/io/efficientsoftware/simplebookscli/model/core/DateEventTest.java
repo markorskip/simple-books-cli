@@ -1,15 +1,9 @@
 package io.efficientsoftware.simplebookscli.model.core;
 
-import io.efficientsoftware.simplebookscli.model.DateEvent;
-import io.efficientsoftware.simplebookscli.modules.mileage.MileageEvent;
-import io.efficientsoftware.simplebookscli.modules.expense.DirectExpenseEvent;
-import io.efficientsoftware.simplebookscli.model.MoneyEvent;
+import io.efficientsoftware.simplebookscli.model.event.DateEvent;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

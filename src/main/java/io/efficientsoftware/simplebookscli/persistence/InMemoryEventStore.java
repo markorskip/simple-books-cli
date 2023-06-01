@@ -1,6 +1,6 @@
 package io.efficientsoftware.simplebookscli.persistence;
 
-import io.efficientsoftware.simplebookscli.model.Event;
+import io.efficientsoftware.simplebookscli.model.event.Event;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -29,6 +29,4 @@ public class InMemoryEventStore {
     protected void setEvents(Set<Event> events) {
         this.events = events;
     }
-
-
 }

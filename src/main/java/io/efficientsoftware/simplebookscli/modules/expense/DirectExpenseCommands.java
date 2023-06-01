@@ -1,15 +1,17 @@
 package io.efficientsoftware.simplebookscli.modules.expense;
 
+import io.efficientsoftware.simplebookscli.model.Report;
+import io.efficientsoftware.simplebookscli.model.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
 @ShellComponent
-public class ExpenseCommands {
+public class DirectExpenseCommands {
 
     @Autowired
-    ExpenseService expenseService;
+    DirectExpenseService directExpenseService;
 
     @ShellMethod(key = {"log-expense" }, value = "Log a direct expense.")
     public void logDirectExpense(String date, String amount, String accountFrom, String accountTo,
@@ -18,12 +20,12 @@ public class ExpenseCommands {
         DirectExpenseEvent directExpenseEvent = new DirectExpenseEvent(date, amount,
                 accountFrom, accountTo,
                 description, category);
-        expenseService.add(directExpenseEvent);
+        directExpenseService.add(directExpenseEvent);
     }
 
     @ShellMethod(key = {"display-all-expenses" }, value = "Display All Direct Expenses.")
     public void displayAllDirectExpenses() {
-       expenseService.getAll();
+       directExpenseService.getEventsReport(SearchCriteria.defaults()).print();
     }
 
 

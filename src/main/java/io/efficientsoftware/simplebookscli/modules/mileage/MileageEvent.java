@@ -1,6 +1,6 @@
 package io.efficientsoftware.simplebookscli.modules.mileage;
 
-import io.efficientsoftware.simplebookscli.model.DateEvent;
+import io.efficientsoftware.simplebookscli.model.event.DateEvent;
 import lombok.Getter;
 import lombok.ToString;
 

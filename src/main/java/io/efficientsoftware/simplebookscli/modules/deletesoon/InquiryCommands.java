@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli.modules;
+package io.efficientsoftware.simplebookscli.modules.deletesoon;
 
 //@ShellComponent
 public class InquiryCommands {

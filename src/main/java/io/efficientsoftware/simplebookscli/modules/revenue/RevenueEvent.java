@@ -1,6 +1,6 @@
 package io.efficientsoftware.simplebookscli.modules.revenue;
 
-import io.efficientsoftware.simplebookscli.model.MoneyEvent;
+import io.efficientsoftware.simplebookscli.model.event.MoneyEvent;
 
 public class RevenueEvent extends MoneyEvent {
 

@@ -1,11 +1,7 @@
-package io.efficientsoftware.simplebookscli.model;
+package io.efficientsoftware.simplebookscli.model.event;
 
-import lombok.Getter;
-
-import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Getter
 public class KeyValueEvent extends Event {
 
     private final String key;

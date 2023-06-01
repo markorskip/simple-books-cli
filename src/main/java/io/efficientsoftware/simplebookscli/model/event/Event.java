@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli.model;
+package io.efficientsoftware.simplebookscli.model.event;
 
 public abstract class Event {
 

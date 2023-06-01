@@ -1,7 +1,7 @@
 package io.efficientsoftware.simplebookscli.modules.homeoffice;
 
 
-import io.efficientsoftware.simplebookscli.model.MoneyEvent;
+import io.efficientsoftware.simplebookscli.model.event.MoneyEvent;
 
 public class HomeOfficeExpenseEvent extends MoneyEvent {
 
