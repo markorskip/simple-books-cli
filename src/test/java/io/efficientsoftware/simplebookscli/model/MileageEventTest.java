@@ -1,6 +1,6 @@
 package io.efficientsoftware.simplebookscli.model;
 
-import io.efficientsoftware.simplebookscli.modules.mileage.MileageEvent;
+import io.efficientsoftware.simplebookscli.modules.auto.mileage.MileageEvent;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli.model.event;
+package io.efficientsoftware.simplebookscli.model;
 
 import lombok.Getter;
 import lombok.ToString;

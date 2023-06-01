@@ -1,14 +1,13 @@
 package io.efficientsoftware.simplebookscli.persistence;
 
 
-import io.efficientsoftware.simplebookscli.modules.mileage.MileageEvent;
-import io.efficientsoftware.simplebookscli.model.event.Event;
+import io.efficientsoftware.simplebookscli.modules.auto.mileage.MileageEvent;
+import io.efficientsoftware.simplebookscli.model.Event;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;

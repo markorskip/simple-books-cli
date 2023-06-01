@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli.model.event;
+package io.efficientsoftware.simplebookscli.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

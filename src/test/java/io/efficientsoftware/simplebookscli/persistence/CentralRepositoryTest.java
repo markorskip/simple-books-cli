@@ -1,8 +1,8 @@
 package io.efficientsoftware.simplebookscli.persistence;
 
-import io.efficientsoftware.simplebookscli.model.event.KeyValueEvent;
-import io.efficientsoftware.simplebookscli.model.event.Event;
-import io.efficientsoftware.simplebookscli.modules.mileage.MileageEvent;
+import io.efficientsoftware.simplebookscli.model.Fact;
+import io.efficientsoftware.simplebookscli.model.Event;
+import io.efficientsoftware.simplebookscli.modules.auto.mileage.MileageEvent;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,7 +31,7 @@ public class CentralRepositoryTest {
         centralRepository.load(FILE_NAME);
         Event event = new MileageEvent("1/1/2022","Chevy","100","store");
         assertEquals(0, centralRepository.readEvents().size());
-        centralRepository.createOrUpdate(event);
+        centralRepository.add(event);
         assertEquals(1, centralRepository.readEvents().size());
     }
 
@@ -39,7 +39,7 @@ public class CentralRepositoryTest {
     public void testDelete()  {
         centralRepository.load(FILE_NAME);
         Event event = new MileageEvent("1/1/2022","Chevy","100","store");
-        centralRepository.createOrUpdate(event);
+        centralRepository.delete(event);
         assertEquals(1, centralRepository.readEvents().size());
 
         centralRepository.delete(event);
@@ -49,11 +49,11 @@ public class CentralRepositoryTest {
 //    @Test
     public void testUpdate() {
         centralRepository.load(FILE_NAME);
-        Event event = new KeyValueEvent("Business Name", "Efficient Software LLC");
-        centralRepository.createOrUpdate(event);
+        Event event = new Fact("Business Name", "Efficient Software LLC");
+        centralRepository.add(event);
         assertEquals(1, centralRepository.readEvents().size());
-        event = new KeyValueEvent("Business Name", "Efficient Software LLC 2.0");
-        centralRepository.createOrUpdate(event);
+        Event event2 = new Fact("Business Name", "Efficient Software LLC 2.0");
+        centralRepository.update(event,event2);
         assertEquals(1, centralRepository.readEvents().size());
     }
 }

@@ -1,6 +1,6 @@
 package io.efficientsoftware.simplebookscli.persistence;
 
-import io.efficientsoftware.simplebookscli.model.event.Event;
+import io.efficientsoftware.simplebookscli.model.Event;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;

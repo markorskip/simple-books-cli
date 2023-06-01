@@ -1,6 +1,6 @@
 package io.efficientsoftware.simplebookscli.persistence;
 
-import io.efficientsoftware.simplebookscli.model.event.Event;
+import io.efficientsoftware.simplebookscli.model.Event;
 
 import java.util.Set;
 

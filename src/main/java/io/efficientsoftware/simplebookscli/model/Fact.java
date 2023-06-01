@@ -1,13 +1,13 @@
-package io.efficientsoftware.simplebookscli.model.event;
+package io.efficientsoftware.simplebookscli.model;
 
 import java.util.Objects;
 
-public class KeyValueEvent extends Event {
+public class Fact extends Event {
 
     private final String key;
     private final String value;
 
-    public KeyValueEvent(String key, String value) {
+    public Fact(String key, String value) {
         this.key = key;
         this.value = value;
     }
@@ -30,7 +30,7 @@ public class KeyValueEvent extends Event {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        KeyValueEvent that = (KeyValueEvent) o;
+        Fact that = (Fact) o;
         return Objects.equals(key, that.key);
     }
 

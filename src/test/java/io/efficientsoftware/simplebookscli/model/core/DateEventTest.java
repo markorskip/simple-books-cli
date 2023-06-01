@@ -1,6 +1,6 @@
 package io.efficientsoftware.simplebookscli.model.core;
 
-import io.efficientsoftware.simplebookscli.model.event.DateEvent;
+import io.efficientsoftware.simplebookscli.model.DateEvent;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

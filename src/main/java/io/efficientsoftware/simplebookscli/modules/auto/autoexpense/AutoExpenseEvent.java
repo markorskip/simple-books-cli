@@ -1,6 +1,6 @@
-package io.efficientsoftware.simplebookscli.modules.autoexpense;
+package io.efficientsoftware.simplebookscli.modules.auto.autoexpense;
 
-import io.efficientsoftware.simplebookscli.model.event.MoneyEvent;
+import io.efficientsoftware.simplebookscli.model.MoneyEvent;
 
 public class AutoExpenseEvent extends MoneyEvent {
 

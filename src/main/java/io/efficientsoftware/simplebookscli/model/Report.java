@@ -1,8 +1,5 @@
 package io.efficientsoftware.simplebookscli.model;
 
-import io.efficientsoftware.simplebookscli.model.event.Event;
-import io.efficientsoftware.simplebookscli.modules.expense.DirectExpenseEvent;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +10,11 @@ public class Report {
 
     public Report(String reportName, ArrayList<? extends Event> lines) {
         this.reportName = reportName;
+        this.lines = lines;
+    }
+
+    public Report(SearchCriteria searchCriteria, ArrayList<? extends Event> lines) {
+        this.reportName = searchCriteria.toString();
         this.lines = lines;
     }
 

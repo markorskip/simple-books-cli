@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli.modules.expense;
+package io.efficientsoftware.simplebookscli.modules.cashflow.expense;
 
 import io.efficientsoftware.simplebookscli.modules.IDateEventRepository;
 import io.efficientsoftware.simplebookscli.persistence.CentralRepository;

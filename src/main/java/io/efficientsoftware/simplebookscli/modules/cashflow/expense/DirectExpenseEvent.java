@@ -1,6 +1,6 @@
-package io.efficientsoftware.simplebookscli.modules.expense;
+package io.efficientsoftware.simplebookscli.modules.cashflow.expense;
 
-import io.efficientsoftware.simplebookscli.model.event.MoneyEvent;
+import io.efficientsoftware.simplebookscli.model.MoneyEvent;
 
 public class DirectExpenseEvent extends MoneyEvent {
 

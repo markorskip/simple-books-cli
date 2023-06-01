@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli.modules.expense;
+package io.efficientsoftware.simplebookscli.modules.cashflow.expense;
 
 import io.efficientsoftware.simplebookscli.model.Report;
 import io.efficientsoftware.simplebookscli.model.SearchCriteria;

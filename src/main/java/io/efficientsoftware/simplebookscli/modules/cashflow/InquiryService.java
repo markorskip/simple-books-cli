@@ -1,4 +1,4 @@
-package io.efficientsoftware.simplebookscli.report;
+package io.efficientsoftware.simplebookscli.modules.cashflow;
 
 import io.efficientsoftware.simplebookscli.persistence.InMemoryEventStore;
 import org.springframework.beans.factory.annotation.Autowired;

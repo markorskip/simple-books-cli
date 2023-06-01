@@ -1,6 +1,6 @@
 package io.efficientsoftware.simplebookscli.modules;
 
-import io.efficientsoftware.simplebookscli.model.event.DateEvent;
+import io.efficientsoftware.simplebookscli.model.DateEvent;
 import io.efficientsoftware.simplebookscli.model.Report;
 import io.efficientsoftware.simplebookscli.model.SearchCriteria;
 
@@ -23,7 +23,7 @@ public interface IDateEventService<T extends DateEvent> {
      * Generate a report from all the events based on the search criteria
      */
     default Report getEventsReport(SearchCriteria searchCriteria) {
-       return new Report(searchCriteria.printTitle(), search(searchCriteria));
+       return new Report(searchCriteria, search(searchCriteria));
     }
 
     IDateEventRepository<T> getRepository();

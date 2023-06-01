@@ -1,10 +1,8 @@
 package io.efficientsoftware.simplebookscli.modules;
 
-import io.efficientsoftware.simplebookscli.model.event.DateEvent;
-import io.efficientsoftware.simplebookscli.model.event.Event;
+import io.efficientsoftware.simplebookscli.model.DateEvent;
 import io.efficientsoftware.simplebookscli.persistence.CentralRepository;
 
-import java.util.Date;
 import java.util.Set;
 
 public interface IDateEventRepository<T extends DateEvent> {
