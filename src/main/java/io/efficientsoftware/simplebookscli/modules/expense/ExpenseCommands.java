@@ -19,10 +19,10 @@ public class ExpenseCommands {
     public void logDirectExpense(String date, String amount, String accountFrom, String accountTo,
                                  @ShellOption(defaultValue = ShellOption.NULL) String description,
                                  @ShellOption(defaultValue = ShellOption.NULL) String category) {
-        MoneyEvent moneyRecord = new DirectExpenseEvent(date, amount,
+        DirectExpenseEvent directExpenseEvent = new DirectExpenseEvent(date, amount,
                 accountFrom, accountTo,
                 description, category);
-        expenseService.log(moneyRecord);
+        expenseService.log(directExpenseEvent);
     }
 
     public void displayAllDirectExpenses() {
@@ -31,11 +31,13 @@ public class ExpenseCommands {
 
 
     public void deleteDirectExpense() {
-        // TODO
+        // TODO - display list first to allow user to select event to delete?
+        // TODO - find pattern for deleting
     }
 
     public void editDirectExpense() {
-        // TODO
+        // TODO - display list to find event to edit
+        // TODO = find edit pattern
     }
 
 

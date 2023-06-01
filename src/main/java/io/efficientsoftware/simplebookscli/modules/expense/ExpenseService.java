@@ -9,19 +9,19 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 @Service
-public class ExpenseService implements ModuleService<MoneyEvent> {
+public class ExpenseService implements ModuleService<DirectExpenseEvent> {
 
     @Autowired
     private ExpenseRepository expenseRepository;
 
     @Override
-    public void log(MoneyEvent moneyRecord) {
-        expenseRepository.addExpense(moneyRecord);
+    public void log(DirectExpenseEvent directExpenseEvent) {
+        expenseRepository.add(directExpenseEvent);
     }
 
     @Override
     public void viewAll() {
-        PrintUtility.printList(expenseRepository.getAllDirectExpenses());
+        PrintUtility.printList(expenseRepository.viewAll());
     }
 
     @Override
