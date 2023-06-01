@@ -22,12 +22,11 @@ public class ExpenseCommands {
         MoneyEvent moneyRecord = new DirectExpenseEvent(date, amount,
                 accountFrom, accountTo,
                 description, category);
-        expenseService.addExpense(moneyRecord);
+        expenseService.log(moneyRecord);
     }
 
     public void displayAllDirectExpenses() {
-        Set<DirectExpenseEvent> directExpenseEvents = expenseService.getAllDirectExpenses();
-        PrintUtility.printList(directExpenseEvents);
+       expenseService.viewAll();
     }
 
 

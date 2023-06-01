@@ -1,8 +1,8 @@
-package io.efficientsoftware.simplebookscli.init;
+package io.efficientsoftware.simplebookscli.modules.init;
 
 
+import io.efficientsoftware.simplebookscli.persistence.CentralRepository;
 import io.efficientsoftware.simplebookscli.persistence.PersistenceService;
-import io.efficientsoftware.simplebookscli.report.InquiryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.component.flow.ComponentFlow;
 import org.springframework.shell.standard.ShellComponent;
@@ -18,13 +18,10 @@ public class InitCommands {
     private ComponentFlow.Builder componentFlowBuilder;
 
     @Autowired
-    private PersistenceService persistenceService;
-
-//    @Autowired
-//    private InquiryService inquiryService;
+    private InitService initService;
 
     @ShellMethod(value = "Load Your SimpleBooksCLI Database")
-    public void load(String path) throws IOException, URISyntaxException {
+    public void load(String path) {
         if (path == null) {
             ComponentFlow flow = componentFlowBuilder.clone().reset()
                     .withPathInput("path")
@@ -34,9 +31,6 @@ public class InitCommands {
 
             path = flow.run().getContext().get("path").toString();
         }
-        System.out.println("Path Selected: " + path);
-        persistenceService.load(path);
-        System.out.println("******Load Complete: Here is the summary of your business*****");
-       // inquiryService.displaySummary();
+        initService.load(path);
     }
 }

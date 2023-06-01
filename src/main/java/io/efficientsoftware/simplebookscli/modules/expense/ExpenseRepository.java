@@ -11,16 +11,13 @@ import java.util.stream.Collectors;
 @Repository
 public class ExpenseRepository extends CentralRepository {
 
-    @Autowired
-    private CentralRepository centralRepository;
-
     public Set<DirectExpenseEvent> getAllDirectExpenses() {
-        return getEvents().stream()
+        return readEvents().stream()
                  .filter(x -> x instanceof DirectExpenseEvent)
                  .map(x-> (DirectExpenseEvent) x).collect(Collectors.toSet());
     }
 
     public void addExpense(MoneyEvent moneyRecord) {
-        add(moneyRecord);
+        createOrUpdate(moneyRecord);
     }
 }

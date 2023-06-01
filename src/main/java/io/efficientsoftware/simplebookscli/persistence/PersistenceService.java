@@ -3,31 +3,27 @@ package io.efficientsoftware.simplebookscli.persistence;
 
 import io.efficientsoftware.simplebookscli.modules.mileage.MileageEvent;
 import io.efficientsoftware.simplebookscli.model.Event;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Persistence to a file.  Only the Central Repository should communicate with PersistenceService.
+ */
 @Component
 public class PersistenceService {
 
-    @Autowired
-    InMemoryEventStore inMemoryEventStore;
-
-    // This is the event store
     private String filePath;
 
-    // You can only append events or delete them.
-
-    public boolean append(Event event) {
+    boolean append(Event event) {
         try{
-            //Specify the file name and path here
             File file = new File(filePath);
 
             /* This logic is to create the file if the
@@ -56,10 +52,27 @@ public class PersistenceService {
         return false;
     }
 
-    public boolean delete(Event event) throws Exception {
-        // deletes event from the event log
-        throw new Exception("Not yet implemented");
-        //return true;
+
+    boolean delete(Event event) throws Exception {
+        Set<Event> allEvents = load(this.filePath);
+        allEvents.remove(event);
+
+        deleteFile();
+        createFile();
+
+        allEvents.forEach(e -> {
+            append(e);
+        });
+        return true;
+    }
+
+    private void deleteFile() {
+        Path filePath = Paths.get(this.filePath);
+        try {
+            Files.delete(filePath);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -69,16 +82,34 @@ public class PersistenceService {
      * @throws IOException
      * @throws URISyntaxException
      */
-    public Set<Event> load(String filePath) throws IOException, URISyntaxException {
+     Set<Event> load(String filePath) throws IOException {
         this.filePath = filePath;
         Path path = Paths.get(filePath);
+        try {
+            BufferedReader reader = Files.newBufferedReader(path);
+            return readEvents(reader);
+        } catch (NoSuchFileException e) {
+            System.out.println("File not found. Creating: " + filePath);
+            createFile();
+            BufferedReader reader = Files.newBufferedReader(path);
+            return readEvents(reader);
+        }
+    }
+
+    private void createFile() {
+         try {
+             Files.createFile(Paths.get(this.filePath));
+         } catch (IOException e) {
+             System.out.println("Error creating a file: " + this.filePath);
+         }
+    }
+
+    private Set<Event> readEvents(BufferedReader reader) throws IOException {
         Set<Event> events = new HashSet<>();
-        BufferedReader reader = Files.newBufferedReader(path);
         String line;
         while ((line = reader.readLine()) != null) {
             events.add(toEvent(line));
         }
-        inMemoryEventStore.setEvents(events);
         return events;
     }
 
@@ -90,7 +121,6 @@ public class PersistenceService {
                 return new MileageEvent(csv);
             }
         }
-        System.out.println("Unable to convert line into an event: " + line);
         throw new IllegalArgumentException("Unable to convert line into an event: " + line);
     }
 }

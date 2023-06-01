@@ -4,6 +4,8 @@ import io.efficientsoftware.simplebookscli.model.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Set;
 
 /**
@@ -11,7 +13,9 @@ import java.util.Set;
  *
  * Ensures anything delete in memory is also deleted from the event store.
  *
- * TOOD write unit tests to prove this
+ * All methods are protected, requiring a module to create its own repository
+ * that extends the central repository.  The module repository is responsible
+ * for filtering getEvents to only the data it needs access to.
  */
 @Service
 public class CentralRepository {
@@ -22,15 +26,16 @@ public class CentralRepository {
     @Autowired
     PersistenceService persistenceService;
 
-    protected Set<Event> getEvents() {
+    /**
+     * @return All events.  Extenders of this class should override and filter.
+     */
+    protected Set<Event> readEvents() {
         return this.inMemoryEventStore.getEvents();
     }
 
-    // adding any event goes through
-    // anything can add an event
-    protected boolean add(Event event) {
-        // Each event can only occur once in the
-        if (inMemoryEventStore.add(event)) {
+    protected boolean createOrUpdate(Event event) {
+        // Each event can only occur once in the data
+        if (inMemoryEventStore.add(event)) { // uses equals to find if the event exists
             // append to event log
             try {
                 persistenceService.append(event);
@@ -40,12 +45,24 @@ public class CentralRepository {
                 inMemoryEventStore.remove(event);
             }
             return true;
+        } else { // event already exists
+            return update(event);
         }
-        return false;
     }
 
-    // deleting any event goes through here
-    // anything can delete an event
+    private boolean update(Event event) {
+        try {
+            persistenceService.delete(event);
+            persistenceService.append(event);
+            inMemoryEventStore.remove(event);
+            inMemoryEventStore.add(event);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Update Failed");
+            return false;
+        }
+    }
+
     protected boolean delete(Event event) {
         if (inMemoryEventStore.remove(event)) {
             // remove from event log
@@ -55,9 +72,18 @@ public class CentralRepository {
                 System.out.println("Failed to delete: " + event);
                 inMemoryEventStore.add(event);
             }
-
             return true;
         }
         return false;
+    }
+
+    protected void load(String path) {
+        Set<Event> events = null;
+        try {
+            events = this.persistenceService.load(path);
+            this.inMemoryEventStore.setEvents(events);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

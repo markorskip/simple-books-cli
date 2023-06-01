@@ -6,8 +6,7 @@ public abstract class Event {
         MILEAGE,
         MONEY,
         TIME,
-        BUSINESS_INFO,
-        ODOMOTER_READING
+        KEY_VALUE
     }
 
     protected EVENT_TYPE eventType;

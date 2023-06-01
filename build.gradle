@@ -27,6 +27,7 @@ dependencies {
 	implementation 'org.springframework.shell:spring-shell-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
+    testImplementation 'junit:junit:4.13.1'
 }
 
 dependencyManagement {
