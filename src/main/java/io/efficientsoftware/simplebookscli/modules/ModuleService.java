@@ -1,24 +1,33 @@
 package io.efficientsoftware.simplebookscli.modules;
 
-import io.efficientsoftware.simplebookscli.model.Event;
-import io.efficientsoftware.simplebookscli.model.MoneyEvent;
-
-import java.util.Set;
+import io.efficientsoftware.simplebookscli.model.Report;
+import io.efficientsoftware.simplebookscli.model.SearchCriteria;
 
 public interface ModuleService<T> {
 
     /**
-     * For adding a new event ie expense, mileage, etc...
-     */
-    void log(T event);
-
-    /**
-     * For all the events for the given module ie expenses
-     */
-    void viewAll();
-
-    /**
      * Display a summary of that particular module
      */
-    void displaySummary();
+    Report getSummaryReport();
+
+    /**
+     * Generate a report from all the events based on the search criteria
+     */
+    Report getEventsReport(SearchCriteria searchCriteria);
+
+    ModuleRepository<T> getRepository();
+
+    default void add(T event) {
+        getRepository().add(event);
+    }
+
+    default void delete(T event) {
+        getRepository().add(event);
+    }
+
+    default void update(T oldEvent, T newEvent) {
+        add(newEvent);
+        delete(oldEvent);
+    }
+
 }

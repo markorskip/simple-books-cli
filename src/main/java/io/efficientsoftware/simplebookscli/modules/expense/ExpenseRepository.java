@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class ExpenseRepository extends CentralRepository implements ModuleRepository<DirectExpenseEvent> {
 
     @Override
-    public Set<DirectExpenseEvent> viewAll() {
+    public Set<DirectExpenseEvent> getAll() {
         return readEvents().stream()
                 .filter(x -> x instanceof DirectExpenseEvent)
                 .map(x-> (DirectExpenseEvent) x).collect(Collectors.toSet());
