@@ -28,6 +28,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
     testImplementation 'junit:junit:4.13.1'
+	implementation 'org.jeasy:easy-random-core:4.0.0'
 }
 
 dependencyManagement {

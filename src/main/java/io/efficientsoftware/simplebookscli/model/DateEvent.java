@@ -3,6 +3,7 @@ package io.efficientsoftware.simplebookscli.model;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Objects;
 
 public abstract class DateEvent extends Event {
 
@@ -45,5 +46,21 @@ public abstract class DateEvent extends Event {
         return "BaseRecord{" +
                 "date=" + date +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DateEvent dateEvent)) return false;
+        if (!super.equals(o)) return false;
+
+        return Objects.equals(date, dateEvent.date);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        return result;
     }
 }

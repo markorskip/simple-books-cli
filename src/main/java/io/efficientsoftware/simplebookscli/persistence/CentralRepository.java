@@ -33,21 +33,21 @@ public class CentralRepository {
 
     public void add(Event event) {
         if (inMemoryEventStore.add(event)) {
-            persistenceService.append(event,filePath);
+            persistenceService.append(event);
             event.displayAdded();
         }
     }
 
     public void update(Event oldEvent, Event newEvent) {
         if (inMemoryEventStore.remove(oldEvent) || inMemoryEventStore.add(newEvent)) {
-            persistenceService.rewrite(inMemoryEventStore.getEvents(), this.filePath);
+            persistenceService.rewrite(inMemoryEventStore.getEvents());
         }
     }
 
     public void delete(Event event) {
        if (inMemoryEventStore.remove(event)) {
            //rewrite the whole file
-           persistenceService.rewrite(inMemoryEventStore.getEvents(), this.filePath);
+           persistenceService.rewrite(inMemoryEventStore.getEvents());
        }
     }
 
@@ -55,7 +55,7 @@ public class CentralRepository {
 
     protected void load(String path) {
         this.filePath = path;
-        Set<Event> events = this.persistenceService.load(path);
+        Set<Event> events = this.persistenceService.load();
         this.inMemoryEventStore.setEvents(events);
     }
 }

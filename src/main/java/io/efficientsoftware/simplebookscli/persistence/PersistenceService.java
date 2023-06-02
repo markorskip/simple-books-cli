@@ -19,8 +19,14 @@ import java.util.Set;
 @Component
 public class PersistenceService implements IFilePersistence {
 
+    private String filePath;
+
+    public PersistenceService(String filePath) {
+        this.filePath = filePath;
+    }
+
     @Override
-    public void append(Event event, String filePath) {
+    public void append(Event event) {
         try{
             File file = new File(filePath);
 
@@ -50,19 +56,19 @@ public class PersistenceService implements IFilePersistence {
 
     /**
      * Loads all events from a file
-     * @param filePath
      * @return
      * @throws IOException
      * @throws URISyntaxException
      */
-     public Set<Event> load(String filePath) {
+     @Override
+     public Set<Event> load() {
         Path path = Paths.get(filePath);
         try {
             BufferedReader reader = Files.newBufferedReader(path);
             return readEvents(reader);
         } catch (IOException e) {
             System.out.println("File not found. Creating: " + filePath);
-            createFile(filePath);
+            createFile();
             BufferedReader reader = null;
             try {
                 reader = Files.newBufferedReader(path);
@@ -74,17 +80,20 @@ public class PersistenceService implements IFilePersistence {
     }
 
     @Override
-    public void deleteFile(String filePath) {
+    public void deleteFile() {
         Path path = Paths.get(filePath);
-        try {
-            Files.delete(path);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if (Files.exists(path)) {
+            try {
+                Files.delete(path);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
+
     @Override
-    public void createFile(String filePath) {
+    public void createFile() {
         try {
             Files.createFile(Paths.get(filePath));
         } catch (IOException e) {
@@ -92,10 +101,10 @@ public class PersistenceService implements IFilePersistence {
         }
     }
 
-    @Override
-    public void writeToFile(Set<Event> events, String filePath) {
+
+    public void writeToFile(Set<Event> events) {
         for (Event event: events) {
-            append(event, filePath);
+            append(event);
         }
     }
 
@@ -104,7 +113,7 @@ public class PersistenceService implements IFilePersistence {
         String line;
         while (true) {
             try {
-                if (!((line = reader.readLine()) != null)) break;
+                if ((line = reader.readLine()) == null) break;
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -114,6 +123,9 @@ public class PersistenceService implements IFilePersistence {
     }
 
     private Event toEvent(String line) {
+        if (line.trim().length() == 0) {
+            return null;
+        }
         String[] csv = line.split(",");
         Event.EVENT_TYPE eventType = Event.EVENT_TYPE.valueOf(csv[0]);
         switch (eventType) {

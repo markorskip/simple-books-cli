@@ -30,4 +30,17 @@ public abstract class Event {
     public void displayUnableToDelete() {
         System.out.println("Unable to delete because this event does not exist: " + toString());
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Event event)) return false;
+
+        return eventType == event.eventType;
+    }
+
+    @Override
+    public int hashCode() {
+        return eventType != null ? eventType.hashCode() : 0;
+    }
 }
