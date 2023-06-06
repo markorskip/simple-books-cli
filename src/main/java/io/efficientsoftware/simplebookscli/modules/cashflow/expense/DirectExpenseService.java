@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DirectExpenseService implements IDateEventService<DirectExpenseEvent> {
@@ -27,8 +29,9 @@ public class DirectExpenseService implements IDateEventService<DirectExpenseEven
     }
 
     @Override
-    public ArrayList<DirectExpenseEvent> search(SearchCriteria searchCriteria) {
-        return null;
+    public List<DirectExpenseEvent> search(SearchCriteria searchCriteria) {
+        //TODO
+        return expenseRepository.getAll().stream().collect(Collectors.toList());
     }
 
     @Override

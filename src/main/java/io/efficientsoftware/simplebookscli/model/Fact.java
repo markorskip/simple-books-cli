@@ -12,6 +12,11 @@ public class Fact extends Event {
         this.value = value;
     }
 
+    public Fact(String[] csv) {
+        this.key = csv[1];
+        this.value = csv[2];
+    }
+
     public String getKey() {
         return key;
     }

@@ -1,8 +1,10 @@
 package io.efficientsoftware.simplebookscli.persistence;
 
 
+import io.efficientsoftware.simplebookscli.model.Fact;
 import io.efficientsoftware.simplebookscli.modules.auto.mileage.MileageEvent;
 import io.efficientsoftware.simplebookscli.model.Event;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -21,79 +23,59 @@ public class PersistenceService implements IFilePersistence {
 
     private String filePath;
 
-    public PersistenceService(String filePath) {
-        this.filePath = filePath;
-    }
-
     @Override
     public void append(Event event) {
+        append(Set.of(event));
+    }
+
+    public void append(Set<Event> events) {
         try{
             File file = new File(filePath);
-
-            /* This logic is to create the file if the
-             * file is not already present
-             */
             if(!file.exists()){
                 file.createNewFile();
             }
-
-            //Here true is to append the content to file
             FileWriter fw = new FileWriter(file,true);
             //BufferedWriter writer give better performance
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.newLine();
-            bw.append(event.toCSV());
-            //Closing BufferedWriter Stream
+            for (Event event: events) {
+                bw.newLine();
+                bw.append(event.toCSV());
+            }
             bw.close();
-
             System.out.println("Data successfully appended at the end of file");
 
         } catch(IOException ioe){
-            System.out.println("Exception occurred:");
             ioe.printStackTrace();
         }
     }
 
-    /**
-     * Loads all events from a file
-     * @return
-     * @throws IOException
-     * @throws URISyntaxException
-     */
      @Override
-     public Set<Event> load() {
+     public Set<Event> load(String filePath) {
+        this.filePath = filePath;
         Path path = Paths.get(filePath);
         try {
             BufferedReader reader = Files.newBufferedReader(path);
             return readEvents(reader);
         } catch (IOException e) {
-            System.out.println("File not found. Creating: " + filePath);
             createFile();
-            BufferedReader reader = null;
-            try {
-                reader = Files.newBufferedReader(path);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-            return readEvents(reader);
+            return new HashSet<Event>();
         }
     }
 
-    @Override
-    public void deleteFile() {
-        Path path = Paths.get(filePath);
-        if (Files.exists(path)) {
-            try {
-                Files.delete(path);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+    protected void deleteFile() {
+         if (filePath != null) {
+             Path path = Paths.get(filePath);
+             if (Files.exists(path)) {
+                 try {
+                     Files.delete(path);
+                 } catch (IOException e) {
+                     throw new RuntimeException(e);
+                 }
+             }
+         }
     }
 
-
-    @Override
-    public void createFile() {
+    protected void createFile() {
         try {
             Files.createFile(Paths.get(filePath));
         } catch (IOException e) {
@@ -101,11 +83,11 @@ public class PersistenceService implements IFilePersistence {
         }
     }
 
-
-    public void writeToFile(Set<Event> events) {
-        for (Event event: events) {
-            append(event);
-        }
+    @Override
+    public void rewrite(Set<Event> events) {
+        createFile();
+        deleteFile();
+        append(events);
     }
 
     private Set<Event> readEvents(BufferedReader reader) {
@@ -126,11 +108,18 @@ public class PersistenceService implements IFilePersistence {
         if (line.trim().length() == 0) {
             return null;
         }
+        // Capture the first
         String[] csv = line.split(",");
+
+        // Determine the event type
         Event.EVENT_TYPE eventType = Event.EVENT_TYPE.valueOf(csv[0]);
+
         switch (eventType) {
             case MILEAGE -> {
                 return new MileageEvent(csv);
+            }
+            case KEY_VALUE -> {
+                return new Fact(csv);
             }
         }
         throw new IllegalArgumentException("Unable to convert line into an event: " + line);

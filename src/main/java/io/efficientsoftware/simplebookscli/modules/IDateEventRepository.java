@@ -13,6 +13,7 @@ public interface IDateEventRepository<T extends DateEvent> {
      */
     Set<T> getAll();
 
+    // I REALLY don't like exposing the central repository through the child repos - rethink this
     CentralRepository getCentralRepository();
 
     default void add(T event) {

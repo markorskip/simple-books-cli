@@ -8,12 +8,12 @@ public class Report {
     private String reportName;
     private List<? extends Event> lines;
 
-    public Report(String reportName, ArrayList<? extends Event> lines) {
+    public Report(String reportName, List<? extends Event> lines) {
         this.reportName = reportName;
         this.lines = lines;
     }
 
-    public Report(SearchCriteria searchCriteria, ArrayList<? extends Event> lines) {
+    public Report(SearchCriteria searchCriteria, List<? extends Event> lines) {
         this.reportName = searchCriteria.toString();
         this.lines = lines;
     }

@@ -4,21 +4,13 @@ import io.efficientsoftware.simplebookscli.model.Event;
 
 import java.util.Set;
 
+//
 public interface IFilePersistence {
+
+    Set<Event> load(String filePath);
 
     void append(Event event);
 
-    Set<Event> load();
+    void rewrite(Set<Event> events);
 
-    default void rewrite(Set<Event> events) {
-        deleteFile();
-        createFile();
-        writeToFile(events);
-    }
-
-    void deleteFile();
-
-    void createFile();
-
-    void writeToFile(Set<Event> events);
 }

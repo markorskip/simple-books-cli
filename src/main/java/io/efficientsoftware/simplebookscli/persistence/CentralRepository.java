@@ -39,7 +39,9 @@ public class CentralRepository {
     }
 
     public void update(Event oldEvent, Event newEvent) {
-        if (inMemoryEventStore.remove(oldEvent) || inMemoryEventStore.add(newEvent)) {
+        boolean removeOccurred = inMemoryEventStore.remove(oldEvent);
+        boolean addOccurred = inMemoryEventStore.add(newEvent);
+        if (removeOccurred || addOccurred) {
             persistenceService.rewrite(inMemoryEventStore.getEvents());
         }
     }
@@ -51,11 +53,8 @@ public class CentralRepository {
        }
     }
 
-    private String filePath;
-
     protected void load(String path) {
-        this.filePath = path;
-        Set<Event> events = this.persistenceService.load();
+        Set<Event> events = this.persistenceService.load(path);
         this.inMemoryEventStore.setEvents(events);
     }
 }

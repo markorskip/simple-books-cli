@@ -657,3 +657,11 @@
 1685637458048:load test.csv
 1685637469462:stacktrace
 1685637478492:load
+1686077045982:help
+1686077052789:display-all-expenses
+1686077060555:load text.csv
+1686077115119:log-expense --accountFrom checking --accountTo internet --amount 100 --category Internet --date 6/6/2023 --description spectrum
+1686077120535:display-all-expenses
+1686077300506:exit
+1686077319987:load text.csv
+1686077321969:display-all-expenses

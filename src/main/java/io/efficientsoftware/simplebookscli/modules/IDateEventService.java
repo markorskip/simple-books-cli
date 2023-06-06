@@ -5,6 +5,7 @@ import io.efficientsoftware.simplebookscli.model.Report;
 import io.efficientsoftware.simplebookscli.model.SearchCriteria;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IDateEventService<T extends DateEvent> {
 
@@ -17,7 +18,7 @@ public interface IDateEventService<T extends DateEvent> {
      * Return an ordered list based on the search criteria
      */
      // TODO this can be default as well for date and sort order
-     ArrayList<T> search(SearchCriteria searchCriteria);
+     List<T> search(SearchCriteria searchCriteria);
 
     /**
      * Generate a report from all the events based on the search criteria

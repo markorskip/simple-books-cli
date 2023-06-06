@@ -35,25 +35,32 @@ public class CentralRepositoryTest {
         assertEquals(1, centralRepository.readEvents().size());
     }
 
-    //@Test
+    @Test
     public void testDelete()  {
         centralRepository.load(FILE_NAME);
         Event event = new MileageEvent("1/1/2022","Chevy","100","store");
-        centralRepository.delete(event);
+        centralRepository.add(event);
         assertEquals(1, centralRepository.readEvents().size());
 
         centralRepository.delete(event);
         assertEquals(0, centralRepository.readEvents().size());
     }
 
-//    @Test
+    @Test
     public void testUpdate() {
         centralRepository.load(FILE_NAME);
         Event event = new Fact("Business Name", "Efficient Software LLC");
         centralRepository.add(event);
         assertEquals(1, centralRepository.readEvents().size());
+        Fact businessFact = (Fact) centralRepository.readEvents().stream().findFirst().get();
+        assertEquals("Business Name", businessFact.getKey());
+        assertEquals("Efficient Software LLC", businessFact.getValue());
+
         Event event2 = new Fact("Business Name", "Efficient Software LLC 2.0");
         centralRepository.update(event,event2);
         assertEquals(1, centralRepository.readEvents().size());
+        businessFact = (Fact) centralRepository.readEvents().stream().findFirst().get();
+        assertEquals("Business Name", businessFact.getKey());
+        assertEquals("Efficient Software LLC 2.0", businessFact.getValue());
     }
 }

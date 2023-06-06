@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 public class InitRepository extends CentralRepository  {
 
     protected void load(String filePath) {
-        load(filePath);
+        super.load(filePath);
     }
 }

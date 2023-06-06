@@ -24,7 +24,7 @@ public class DirectExpenseCommands {
 
     @ShellMethod(key = {"display-all-expenses" }, value = "Display All Direct Expenses.")
     public void displayAllDirectExpenses() {
-       directExpenseService.getEventsReport(SearchCriteria.defaults()).print();
+        directExpenseService.getEventsReport(SearchCriteria.defaults()).print();
     }
 
 
