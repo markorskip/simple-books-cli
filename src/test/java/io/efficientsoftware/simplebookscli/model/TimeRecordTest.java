@@ -1,7 +1,6 @@
 package io.efficientsoftware.simplebookscli.model;
 
 
-import io.efficientsoftware.simplebookscli.modules.time.TimeEvent;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;

@@ -1,7 +1,7 @@
 package io.efficientsoftware.simplebookscli;
 
 import io.efficientsoftware.simplebookscli.model.Event;
-import io.efficientsoftware.simplebookscli.modules.auto.mileage.MileageEvent;
+import io.efficientsoftware.simplebookscli.model.MileageEvent;
 import org.jeasy.random.EasyRandom;
 import org.jeasy.random.EasyRandomParameters;
 

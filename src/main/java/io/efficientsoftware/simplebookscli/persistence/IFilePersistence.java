@@ -4,7 +4,6 @@ import io.efficientsoftware.simplebookscli.model.Event;
 
 import java.util.Set;
 
-//
 public interface IFilePersistence {
 
     Set<Event> load(String filePath);
@@ -12,5 +11,4 @@ public interface IFilePersistence {
     void append(Event event);
 
     void rewrite(Set<Event> events);
-
 }
