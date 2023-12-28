@@ -1,4 +1,7 @@
+# SimpleBooksCLI
 
+The idea for this project is to build a book keeping software that runs from the command prompt.  All data is stored locally.  The software can generate
+invoices and accounting reports used for taxes and analysis.
 
 ## Native Build
 
